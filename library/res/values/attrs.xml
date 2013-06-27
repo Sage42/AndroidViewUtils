@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<declare-styleable name="sage42">
+
+		<!-- using android's -->
+		<attr name="android:textStyle" />
+
+		<!-- our custom attribute -->
+		<attr name="fontFamily" format="string" />
+	</declare-styleable>
+
+</resources>
