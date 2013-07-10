@@ -1,9 +1,9 @@
-package com.sage42.android.views;
+package com.sage42.android.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.widget.EditText;
+import android.widget.Button;
 
 import com.sage42.android.view.R;
 
@@ -25,9 +25,9 @@ import com.sage42.android.view.R;
  * @author Corey Scott (corey.scott@sage42.com)
  *
  */
-public class MyEditText extends EditText
+public class MyButton extends Button
 {
-    public MyEditText(final Context context, final AttributeSet attrs)
+    public MyButton(final Context context, final AttributeSet attrs)
     {
         super(context, attrs);
 

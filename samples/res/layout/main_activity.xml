@@ -1,0 +1,87 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:sage42="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:text="@string/title_sample_1" />
+
+        <com.sage42.android.view.CircularProgressBar
+            android:id="@+id/countdown_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FF0000"
+            android:textSize="28sp"
+            sage42:bgColor="#000000"
+            sage42:bgStrokeWidth="3dp"
+            sage42:diameter="48dp"
+            sage42:max="30"
+            sage42:progressColor="#cccccc"
+            sage42:progressStrokeWidth="3dp"
+            sage42:showText="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:text="@string/title_sample_2" />
+
+        <com.sage42.android.view.CircularProgressBar
+            android:id="@+id/countup_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#00FF00"
+            android:textSize="28sp"
+            sage42:bgColor="#000000"
+            sage42:bgStrokeWidth="3dp"
+            sage42:diameter="48dp"
+            sage42:max="30"
+            sage42:progressColor="#cccccc"
+            sage42:progressStrokeWidth="3dp"
+            sage42:showText="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:text="@string/title_sample_3" />
+
+        <com.sage42.android.view.CircularProgressBar
+            android:id="@+id/countdown_bar_no_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#0000FF"
+            android:textSize="28sp"
+            sage42:bgColor="#cccccc"
+            sage42:bgStrokeWidth="3dp"
+            sage42:diameter="48dp"
+            sage42:max="30"
+            sage42:progressColor="#0000FF"
+            sage42:progressStrokeWidth="3dp"
+            sage42:showText="false" />
+    </LinearLayout>
+
+</ScrollView>

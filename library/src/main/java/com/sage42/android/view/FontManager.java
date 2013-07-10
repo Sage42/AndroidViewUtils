@@ -1,4 +1,4 @@
-package com.sage42.android.views;
+package com.sage42.android.view;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

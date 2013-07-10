@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sage 42 View Utils - Samples</string>
+    <string name="title_activity_main">Sage 42 View Utils - Samples</string>
+    <string name="title_sample_1">Count Down Timer</string>
+    <string name="title_sample_2">Count Up Timer</string>
+    <string name="title_sample_3">Count Down Timer without Text</string>
+
+</resources>
