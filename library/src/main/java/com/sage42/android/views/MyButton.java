@@ -32,9 +32,9 @@ public class MyButton extends Button
         super(context, attrs);
 
         // Fonts work as a combination of particular family and the style. 
-        final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.sage42);
-        final String family = args.getString(R.styleable.sage42_fontFamily);
-        final int style = args.getInt(R.styleable.sage42_android_textStyle, -1);
+        final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.fonts);
+        final String family = args.getString(R.styleable.fonts_fontFamily);
+        final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);
         args.recycle();
 
         if (!this.isInEditMode())
