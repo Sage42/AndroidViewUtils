@@ -15,8 +15,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.sage42.android.view.R;
-
 /**
  * Copyright (C) 2013- Sage 42 App Sdn Bhd
  *
@@ -40,19 +38,13 @@ public class CircularProgressBar extends View
     private static final float ADJUST_FOR_12_OCLOCK = 270f;
 
     // properties for the background circle
-    private final int          mBgColor;
-    private final int          mBgStrokeWidth;
     private final Paint        mBgPaint;
 
     // properties for the progress circle
-    private final int          mProgressColor;
-    private final int          mProgressStrokeWidth;
     private final Paint        mProgressPaint;
 
     // text properties for the countdown text
     private boolean            mShowText;
-    private final int          mTextSize;
-    private final int          mTextColor;
     private final Paint        mTextPaint;
 
     // maximum number of points in the circle default is 100
@@ -97,18 +89,18 @@ public class CircularProgressBar extends View
 
         try
         {
-            this.mBgColor = args.getColor(R.styleable.circularProgressBar_bgColor, R.color.black);
-            this.mBgStrokeWidth = args.getDimensionPixelSize(R.styleable.circularProgressBar_bgStrokeWidth,
+            final int bgColor = args.getColor(R.styleable.circularProgressBar_bgColor, R.color.black);
+            final int bgStrokeWidth = args.getDimensionPixelSize(R.styleable.circularProgressBar_bgStrokeWidth,
                             (int) defaultStrokeWidth);
 
-            this.mProgressColor = args.getColor(R.styleable.circularProgressBar_progressColor, R.color.white);
-            this.mProgressStrokeWidth = args.getDimensionPixelSize(R.styleable.circularProgressBar_progressStrokeWidth,
-                            (int) defaultStrokeWidth);
+            final int progressColor = args.getColor(R.styleable.circularProgressBar_progressColor, R.color.white);
+            final int progressStrokeWidth = args.getDimensionPixelSize(
+                            R.styleable.circularProgressBar_progressStrokeWidth, (int) defaultStrokeWidth);
 
             this.mShowText = args.getBoolean(R.styleable.circularProgressBar_showText, false);
-            this.mTextSize = args.getDimensionPixelSize(R.styleable.circularProgressBar_android_textSize,
+            final int textSize = args.getDimensionPixelSize(R.styleable.circularProgressBar_android_textSize,
                             (int) defaultTextSize);
-            this.mTextColor = args.getInt(R.styleable.circularProgressBar_android_textColor, R.color.white);
+            final int textColor = args.getInt(R.styleable.circularProgressBar_android_textColor, R.color.white);
 
             this.mLayoutMargin = args.getDimensionPixelSize(R.styleable.circularProgressBar_android_layout_margin,
                             (int) defaultMargin);
@@ -116,28 +108,28 @@ public class CircularProgressBar extends View
             this.mMax = args.getInt(R.styleable.circularProgressBar_max, 100);
 
             this.mDiameter = args.getDimension(R.styleable.circularProgressBar_diameter, defaultDiameter);
+
+            // create paint settings based on supplied args
+            this.mBgPaint = new Paint();
+            this.mBgPaint.setColor(bgColor);
+            this.mBgPaint.setStyle(Style.STROKE);
+            this.mBgPaint.setStrokeWidth(bgStrokeWidth);
+
+            this.mProgressPaint = new Paint();
+            this.mProgressPaint.setColor(progressColor);
+            this.mProgressPaint.setStyle(Style.STROKE);
+            this.mProgressPaint.setStrokeWidth(progressStrokeWidth);
+
+            this.mTextPaint = new Paint();
+            this.mTextPaint.setColor(textColor);
+            this.mTextPaint.setStyle(Style.STROKE);
+            this.mTextPaint.setTextAlign(Align.CENTER);
+            this.mTextPaint.setTextSize(textSize);
         }
         finally
         {
             args.recycle();
         }
-
-        // create paint settings based on supplied args
-        this.mBgPaint = new Paint();
-        this.mBgPaint.setColor(this.mBgColor);
-        this.mBgPaint.setStyle(Style.STROKE);
-        this.mBgPaint.setStrokeWidth(this.mBgStrokeWidth);
-
-        this.mProgressPaint = new Paint();
-        this.mProgressPaint.setColor(this.mProgressColor);
-        this.mProgressPaint.setStyle(Style.STROKE);
-        this.mProgressPaint.setStrokeWidth(this.mProgressStrokeWidth);
-
-        this.mTextPaint = new Paint();
-        this.mTextPaint.setColor(this.mTextColor);
-        this.mTextPaint.setStyle(Style.STROKE);
-        this.mTextPaint.setTextAlign(Align.CENTER);
-        this.mTextPaint.setTextSize(this.mTextSize);
     }
 
     @Override
@@ -195,5 +187,50 @@ public class CircularProgressBar extends View
         // size will always be diameter + margin on add sides
         final int size = (int) this.mDiameter + (this.mLayoutMargin * 2);
         this.setMeasuredDimension(size, size);
+    }
+
+    public void setMax(final int max)
+    {
+        this.mMax = max;
+    }
+
+    public void setBgColor(final int bgColor)
+    {
+        this.mBgPaint.setColor(bgColor);
+    }
+
+    public void setBgStrokeWidth(final int bgStrokeWidth)
+    {
+        this.mBgPaint.setStrokeWidth(bgStrokeWidth);
+    }
+
+    public void setProgressColor(final int progressColor)
+    {
+        this.mProgressPaint.setColor(progressColor);
+    }
+
+    public void setProgressStrokeWidth(final int progressStrokeWidth)
+    {
+        this.mProgressPaint.setStrokeWidth(progressStrokeWidth);
+    }
+
+    public void setShowText(final boolean showText)
+    {
+        this.mShowText = showText;
+    }
+
+    public void setTextSize(final int textSize)
+    {
+        this.mTextPaint.setTextSize(textSize);
+    }
+
+    public void setTextColor(final int textColor)
+    {
+        this.mTextPaint.setColor(textColor);
+    }
+
+    public void setDiameter(final float diameter)
+    {
+        this.mDiameter = diameter;
     }
 }
