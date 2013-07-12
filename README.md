@@ -45,6 +45,19 @@ A custom font enabled TextView that is preconfigured to scroll or marquee the co
 * [Sample (Layout)](https://github.com/Sage42/AndroidViewUtils/blob/master/samples/res/layout/marquee_text_activity.xml)
 
 
+Contributing
+------------
+
+Questions, comments and abuse are all welcome.
+
+Please use the Github Issues, Pull-requests or contact the author(s) via Google+
+
+
+Author(s):
+----------
+[Corey Scott](http://plus.google.com/115297926907967777909)
+
+
 License
 -------
 
