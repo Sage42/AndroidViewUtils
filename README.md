@@ -3,6 +3,8 @@ AndroidViewUtils
 
 A collection of UI elements and supporting code to ease Android UI implementation
 
+#### [Download Sample App](https://github.com/Sage42/AndroidViewUtils/raw/master/sample_apk/AndroidViewUtilsSamples.apk)
+
 
 Includes:
 --------
