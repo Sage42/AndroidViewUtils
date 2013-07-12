@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.sage42.android.views_samples"
+    package="com.sage42.android.view_samples"
     android:versionCode="1"
     android:versionName="1.0.1" >
 
@@ -28,9 +28,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sage42.android.views_samples.SwipeEnabledActivity"
-            android:label="@string/title_activity_swipe_enabled" >
-        </activity>
+            android:name="com.sage42.android.view_samples.circular_pb.CircularProgressBarActivity"
+            android:label="@string/menu_circular_progress_bar" />
+        <activity
+            android:name="com.sage42.android.view_samples.custom_fonts.CustomFontsActivity"
+            android:label="@string/menu_custom_font_views" />
+        <activity
+            android:name="com.sage42.android.view_samples.marquee.MarqueeTextActivity"
+            android:label="@string/menu_marquee_text" />
+        <activity
+            android:name="com.sage42.android.view_samples.SwipeEnabledActivity"
+            android:label="@string/title_activity_swipe_enabled" />
     </application>
 
 </manifest>

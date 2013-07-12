@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.sage42.android.view.gestures.MyGestureDetector;
 import com.sage42.android.view.gestures.MyGestureDetector.ISwipeCallbacks;
 import com.sage42.android.view.gestures.MyGestureDetector.SwipeDirection;
-import com.sage42.android.views_samples.R;
 
 public class SwipeEnabledActivity extends Activity implements ISwipeCallbacks
 {

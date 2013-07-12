@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sage 42 View Utils - Samples</string>
-    <string name="title_activity_main">Sage 42 View Utils - Samples</string>
-    <string name="title_sample_1">Count Down Timer</string>
-    <string name="title_sample_2">Count Up Timer</string>
-    <string name="title_sample_3">Count Down Timer without Text</string>
+    <string name="app_name">Sage 42 View Utils</string>
+    <string name="title_activity_main">Sage 42 View Utils</string>
+    <string name="menu_circular_progress_bar">Circular Progress Bar</string>
+    <string name="menu_custom_font_views">Custom Font View Elements</string>
+    <string name="menu_marquee_text">Marquee/Scrolling TextView</string>
+    <string name="title_sample_1">Progress Bar - Counting down</string>
+    <string name="title_sample_2">Progress Bar - Counting up</string>
+    <string name="title_sample_3">Progress Bar - Counting down without text</string>
     <string name="title_activity_swipe_enabled">SwipeEnabledActivity</string>
     <string name="swipe_left">Swipe left detected</string>
     <string name="swipe_right">Swipe right detected</string>
-    
+    <string name="custom_font_roboto_thin">Roboto Thin</string>
+    <string name="custom_font_roboto_thin_italic">Roboto Thin Italic</string>
+    <string name="custom_font_roboto_light">Roboto Light</string>
+    <string name="custom_font_roboto_light_italic">Roboto Light Italic</string>
+    <string name="custom_font_roboto_regular">Roboto Regular</string>
+    <string name="custom_font_roboto_regular_italic">Roboto Regular Italic</string>
+    <string name="custom_font_roboto_medium">Roboto Medium</string>
+    <string name="custom_font_roboto_medium_italic">Roboto Medium Italic</string>
+    <string name="custom_font_roboto_bold">Roboto Bold</string>
+    <string name="custom_font_roboto_bold_italic">Roboto Bold Italic</string>
+    <string name="custom_font_roboto_black">Roboto Black</string>
+    <string name="custom_font_roboto_black_italic">Roboto Black Italic</string>
+    <string name="custom_font_roboto_condensed">Roboto Condensed</string>
+    <string name="custom_font_roboto_condensed_italic">Roboto Condensed Italic</string>
+    <string name="custom_font_roboto_bold_condensed">Roboto Bold Condensed</string>
+    <string name="custom_font_roboto_bold_condensed_italic">Roboto Bold Condensed Italic</string>
+    <string name="custom_font_baroque_script">Baroque Script from www.1001freefonts.com</string>
+    <string name="custom_font_katy_berry">Katy Berry from www.1001freefonts.com</string>
+    <string name="marquee_long_long_text">The quick brown fox jumped over the lazy dog.</string>
 </resources>

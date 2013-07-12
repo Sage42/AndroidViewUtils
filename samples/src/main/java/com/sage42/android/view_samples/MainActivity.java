@@ -1,12 +1,15 @@
 package com.sage42.android.view_samples;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.view.View;
+import com.sage42.android.view_samples.circular_pb.CircularProgressBarActivity;
+import com.sage42.android.view_samples.custom_fonts.CustomFontsActivity;
+import com.sage42.android.view_samples.marquee.MarqueeTextActivity;
 
-import com.sage42.android.view.CircularProgressBar;
-import com.sage42.android.views_samples.R;
+import android.app.ListActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 /**
  * Copyright (C) 2013- Sage 42 App Sdn Bhd
@@ -26,111 +29,49 @@ import com.sage42.android.views_samples.R;
  * @author Corey Scott (corey.scott@sage42.com)
  *
  */
-public class MainActivity extends Activity
+public class MainActivity extends ListActivity
 {
-    private static final int    ONE_SECOND_IN_MS = 1000;
-
-    // view elements
-    private CircularProgressBar mCountdownBar;
-    private CircularProgressBar mCountUpBar;
-    private CircularProgressBar mCountDownNoText;
-
-    // some countdown timers to provide a little action
-    private CountDownTimer      mTimerCountDown;
-    private CountDownTimer      mTimerCountUp;
-    private CountDownTimer      mTimerCountDownNoText;
+    // constants to map menu positions to something more readable
+    private static final int MENU_CIRCULAR_PROGRESS_BAR = 0;
+    private static final int MENU_CUSTOM_FONT_VIEWS     = 1;
+    private static final int MENU_MARQUEE_TEXT          = 2;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        // wire up the layout
-        this.setContentView(R.layout.main_activity);
-
-        // wire up the ui elements
-        this.mCountdownBar = (CircularProgressBar) this.findViewById(R.id.countdown_bar);
-        this.mCountUpBar = (CircularProgressBar) this.findViewById(R.id.countup_bar);
-        this.mCountDownNoText = (CircularProgressBar) this.findViewById(R.id.countdown_bar_no_text);
+        // populate the "menu" list
+        final String[] values = new String[]
+        { this.getString(R.string.menu_circular_progress_bar), this.getString(R.string.menu_custom_font_views),
+                        this.getString(R.string.menu_marquee_text) };
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
+        this.setListAdapter(adapter);
     }
 
     @Override
-    @SuppressWarnings("synthetic-access")
-    protected void onResume()
+    protected void onListItemClick(final ListView listView, final View view, final int position, final long id)
     {
-        super.onResume();
-
-        // start some timers so that things move
-        this.mTimerCountDown = new CountDownTimer(30 * ONE_SECOND_IN_MS, ONE_SECOND_IN_MS)
+        switch (position)
         {
-            @Override
-            public void onTick(final long millisUntilFinished)
-            {
-                final int secondsRemaining = (int) (millisUntilFinished / ONE_SECOND_IN_MS);
-                MainActivity.this.mCountdownBar.setProgress(secondsRemaining);
-            }
+            case MENU_CIRCULAR_PROGRESS_BAR:
+                this.startActivity(new Intent(this, CircularProgressBarActivity.class));
+                return;
 
-            @Override
-            public void onFinish()
-            {
-                MainActivity.this.mCountdownBar.setProgress(0);
-                // make it disappear (because we can)
-                MainActivity.this.mCountdownBar.setVisibility(View.INVISIBLE);
-            }
-        }.start();
+            case MENU_CUSTOM_FONT_VIEWS:
+                this.startActivity(new Intent(this, CustomFontsActivity.class));
+                return;
 
-        this.mTimerCountUp = new CountDownTimer(30 * ONE_SECOND_IN_MS, ONE_SECOND_IN_MS)
-        {
-            @Override
-            public void onTick(final long millisUntilFinished)
-            {
-                final int secondsElapsed = 30 - ((int) (millisUntilFinished / ONE_SECOND_IN_MS));
-                MainActivity.this.mCountUpBar.setProgress(secondsElapsed);
-            }
+            case MENU_MARQUEE_TEXT:
+                this.startActivity(new Intent(this, MarqueeTextActivity.class));
+                return;
 
-            @Override
-            public void onFinish()
-            {
-                MainActivity.this.mCountUpBar.setProgress(30);
-            }
-        }.start();
-
-        this.mTimerCountDownNoText = new CountDownTimer(30 * ONE_SECOND_IN_MS, ONE_SECOND_IN_MS)
-        {
-            @Override
-            public void onTick(final long millisUntilFinished)
-            {
-                final int secondsRemaining = (int) (millisUntilFinished / ONE_SECOND_IN_MS);
-                MainActivity.this.mCountDownNoText.setProgress(secondsRemaining);
-            }
-
-            @Override
-            public void onFinish()
-            {
-                MainActivity.this.mCountDownNoText.setProgress(0);
-            }
-        }.start();
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-
-        // stop any running timers
-        // there are needed to be clear and be sure that the timers dont cause exceptions when this activity is not in focus
-        if (this.mTimerCountDown != null)
-        {
-            this.mTimerCountDown.cancel();
+            default:
+                // do nothing
+                break;
         }
-        if (this.mTimerCountUp != null)
-        {
-            this.mTimerCountUp.cancel();
-        }
-        if (this.mTimerCountDownNoText != null)
-        {
-            this.mTimerCountDownNoText.cancel();
-        }
+
+        super.onListItemClick(listView, view, position, id);
     }
 
 }

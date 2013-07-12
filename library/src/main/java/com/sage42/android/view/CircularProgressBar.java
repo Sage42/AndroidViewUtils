@@ -178,7 +178,6 @@ public class CircularProgressBar extends View
 
         // force redraw
         this.invalidate();
-        this.requestLayout();
     }
 
     @Override

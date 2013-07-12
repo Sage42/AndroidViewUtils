@@ -9,3 +9,8 @@ You will also need to copy the project.properties.sample file to project.propert
 
 All of this is so that any other contributions are not poluted with developer or IDE related noise.
 I am sorry for any inconvenience.
+
+
+Notes
+------
+- All android resources must be in lowercase, so please be mindful of this when adding your fonts to your /res/raw directory

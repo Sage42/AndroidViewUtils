@@ -3,6 +3,7 @@ package com.sage42.android.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -27,11 +28,13 @@ import com.sage42.android.view.R;
  *
  */
 /**
- * Auto-Scrolling marquee text view
+ * Auto-Scrolling or Marquee TextView
  * 
- * Source: http://androidbears.stellarpc.net/?p=185
+ * Notes:
+ * Due to device/system limitations this may not work on when inside a RelativeLayout, 
+ * unfortunately the reason/excuse for this is beyond me.
  * 
- * @author http://androidbears.stellarpc.net/?page_id=195
+ * Reference: http://androidbears.stellarpc.net/?p=185
  *
  */
 public class MyScrollingTextView extends TextView
@@ -51,16 +54,29 @@ public class MyScrollingTextView extends TextView
             // Set the typeface based on the family and the style combination.
             this.setTypeface(FontManager.getInstance().get(context, family, style));
         }
+
+        this.init();
     }
 
     public MyScrollingTextView(final Context context, final AttributeSet attrs)
     {
         super(context, attrs);
+
+        this.init();
     }
 
     public MyScrollingTextView(final Context context)
     {
         super(context);
+
+        this.init();
+    }
+
+    private void init()
+    {
+        // setup the other text view properties
+        super.setSingleLine(true);
+        super.setEllipsize(TruncateAt.MARQUEE);
     }
 
     @Override
