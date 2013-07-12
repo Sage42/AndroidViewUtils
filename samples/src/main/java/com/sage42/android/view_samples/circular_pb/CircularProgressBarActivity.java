@@ -10,8 +10,6 @@ import android.view.View;
 
 import com.sage42.android.view.CircularProgressBar;
 import com.sage42.android.view_samples.R;
-import com.sage42.android.view_samples.R.id;
-import com.sage42.android.view_samples.R.layout;
 
 /**
  * Copyright (C) 2013- Sage 42 App Sdn Bhd
