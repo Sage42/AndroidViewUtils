@@ -19,5 +19,5 @@
 # Eclipse project files
 .classpath
 .project
-/.settings
+**/.settings/
 
