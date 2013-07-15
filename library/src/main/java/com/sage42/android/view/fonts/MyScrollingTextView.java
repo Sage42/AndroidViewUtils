@@ -1,4 +1,4 @@
-package com.sage42.android.view;
+package com.sage42.android.view.fonts;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -39,37 +39,26 @@ import com.sage42.android.view.R;
  */
 public class MyScrollingTextView extends TextView
 {
+
     public MyScrollingTextView(final Context context, final AttributeSet attrs, final int defStyle)
     {
         super(context, attrs, defStyle);
-
-        // Fonts work as a combination of particular family and the style. 
-        final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.fonts);
-        final String family = args.getString(R.styleable.fonts_fontFamily);
-        final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);
-        args.recycle();
-
-        if (!this.isInEditMode())
-        {
-            // Set the typeface based on the family and the style combination.
-            this.setTypeface(FontManager.getInstance().get(context, family, style));
-        }
-
         this.init();
+        this.initCustomFonts(context, attrs, defStyle);
     }
 
     public MyScrollingTextView(final Context context, final AttributeSet attrs)
     {
         super(context, attrs);
-
         this.init();
+        this.initCustomFonts(context, attrs, -1);
     }
 
     public MyScrollingTextView(final Context context)
     {
         super(context);
-
         this.init();
+        this.initCustomFonts(context, null, -1);
     }
 
     private void init()
@@ -106,6 +95,31 @@ public class MyScrollingTextView extends TextView
     public boolean isFocused()
     {
         return true;
+    }
+
+    /**
+     * Extract any custom font related settings from supplied args
+     * 
+     * @param context
+     * @param attrs
+     * @param defStyle
+     */
+    private void initCustomFonts(final Context context, final AttributeSet attrs, final int defStyle)
+    {
+        if (this.isInEditMode())
+        {
+            // this is preview mode so we need to stop processing
+            return;
+        }
+
+        // Fonts work as a combination of particular family and the style. 
+        final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.fonts);
+        final String family = args.getString(R.styleable.fonts_fontFamily);
+        final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);
+        args.recycle();
+
+        // Set the typeface based on the family and the style combination.
+        this.setTypeface(FontManager.getInstance().get(context, family, style));
     }
 
 }

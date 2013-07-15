@@ -2,7 +2,7 @@ package com.sage42.android.view_samples.custom_fonts;
 
 import android.content.Context;
 
-import com.sage42.android.view.FontManager;
+import com.sage42.android.view.fonts.FontManager;
 import com.sage42.android.view_samples.R;
 
 public class MyFontManager extends FontManager

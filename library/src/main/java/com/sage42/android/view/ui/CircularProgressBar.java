@@ -1,4 +1,4 @@
-package com.sage42.android.view;
+package com.sage42.android.view.ui;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,6 +14,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+
+import com.sage42.android.view.R;
 
 /**
  * Copyright (C) 2013- Sage 42 App Sdn Bhd
@@ -154,7 +156,8 @@ public class CircularProgressBar extends View
         final BigDecimal sweepAngle = percentage.multiply(BigDecimal.valueOf(360));
 
         // bounds are same as the bg circle, so diameter width and height moved in by margin
-        canvas.drawArc(this.mArcBounds, ADJUST_FOR_12_OCLOCK, sweepAngle.floatValue(), false, this.mProgressPaint);
+        canvas.drawArc(this.mArcBounds, CircularProgressBar.ADJUST_FOR_12_OCLOCK, sweepAngle.floatValue(), false,
+                        this.mProgressPaint);
 
         if (this.mShowText)
         {

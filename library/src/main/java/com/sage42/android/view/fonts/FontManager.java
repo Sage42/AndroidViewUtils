@@ -1,4 +1,4 @@
-package com.sage42.android.view;
+package com.sage42.android.view.fonts;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Typeface;
 import android.util.Log;
+
+import com.sage42.android.view.R;
 
 /**
  * Copyright (C) 2013- Sage 42 App Sdn Bhd
@@ -87,16 +89,21 @@ public class FontManager
     public void initialize(final Context context)
     {
         this.mFonts = new ArrayList<Font>();
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_THIN, R.raw.roboto_thin, R.raw.roboto_thin_italic));
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_LIGHT, R.raw.roboto_light, R.raw.roboto_light_italic));
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_REGULAR, R.raw.roboto_regular,
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_THIN, R.raw.roboto_thin,
+                        R.raw.roboto_thin_italic));
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_LIGHT, R.raw.roboto_light,
+                        R.raw.roboto_light_italic));
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_REGULAR, R.raw.roboto_regular,
                         R.raw.roboto_regular_italic));
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_MEDIUM, R.raw.roboto_medium, R.raw.roboto_medium_italic));
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_BOLD, R.raw.roboto_bold, R.raw.roboto_bold_italic));
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_BLACK, R.raw.roboto_black, R.raw.roboto_black_italic));
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_CONDENSED, R.raw.roboto_condensed,
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_MEDIUM, R.raw.roboto_medium,
+                        R.raw.roboto_medium_italic));
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD, R.raw.roboto_bold,
+                        R.raw.roboto_bold_italic));
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_BLACK, R.raw.roboto_black,
+                        R.raw.roboto_black_italic));
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_CONDENSED, R.raw.roboto_condensed,
                         R.raw.roboto_condensed_italic));
-        this.mFonts.add(this.addFont(context, FONT_NAME_ROBOTO_BOLD_CONDENSED, R.raw.roboto_bold_condensed,
+        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED, R.raw.roboto_bold_condensed,
                         R.raw.roboto_bold_condensed_italic));
     }
 

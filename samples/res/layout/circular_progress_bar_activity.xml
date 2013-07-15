@@ -22,7 +22,7 @@
 			android:text="@string/title_sample_1"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
 
-		<com.sage42.android.view.CircularProgressBar
+		<com.sage42.android.view.ui.CircularProgressBar
 			android:id="@+id/countdown_bar"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
 			android:text="@string/title_sample_2"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
 
-		<com.sage42.android.view.CircularProgressBar
+		<com.sage42.android.view.ui.CircularProgressBar
 			android:id="@+id/countup_bar"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
 			android:text="@string/title_sample_3"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
 
-		<com.sage42.android.view.CircularProgressBar
+		<com.sage42.android.view.ui.CircularProgressBar
 			android:id="@+id/countdown_bar_no_text"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

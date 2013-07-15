@@ -13,7 +13,7 @@ Just like a normal progress bar only in circle form.  This is ideal for count do
 
 ![Circular Progress Bar](website/images/circ_progress_bar.png)
 
-* [Code](https://github.com/Sage42/AndroidViewUtils/blob/master/library/src/main/java/com/sage42/android/view/CircularProgressBar.java)
+* [Code](https://github.com/Sage42/AndroidViewUtils/blob/master/library/src/main/java/com/sage42/android/view/ui/CircularProgressBar.java)
 * [Sample (Java)](https://github.com/Sage42/AndroidViewUtils/blob/master/samples/src/main/java/com/sage42/android/view_samples/circular_pb/CircularProgressBarActivity.java)
 * [Sample (Layout)](https://github.com/Sage42/AndroidViewUtils/blob/master/samples/res/layout/circular_progress_bar_activity.xml)
 
@@ -27,9 +27,7 @@ Not all of the UI elements have been enabled yet, so if there is something you n
 
 ![Custom Font Enabled View Elements](website/images/custom_fonts.png)
 
-* [Code - Button](https://github.com/Sage42/AndroidViewUtils/tree/master/library/src/main/java/com/sage42/android/view/MyButton.java)
-* [Code - EditText](https://github.com/Sage42/AndroidViewUtils/tree/master/library/src/main/java/com/sage42/android/view/EditText.java)
-* [Code - ViewText](https://github.com/Sage42/AndroidViewUtils/tree/master/library/src/main/java/com/sage42/android/view/ViewText.java)
+* [Code - Text Based Widgets](https://github.com/Sage42/AndroidViewUtils/tree/master/library/src/main/java/com/sage42/android/view/fonts/)
 * [Sample (Java)](https://github.com/Sage42/AndroidViewUtils/tree/master/samples/src/main/java/com/sage42/android/view_samples/custom_fonts/)
 * [Sample (Layout)](https://github.com/Sage42/AndroidViewUtils/blob/master/samples/res/layout/custom_fonts_activity.xml)
 
@@ -40,7 +38,7 @@ A custom font enabled TextView that is preconfigured to scroll or marquee the co
 
 ![Scrolling (Marquee) TextView ](website/images/marquee_textview.png)
 
-* [Code](https://github.com/Sage42/AndroidViewUtils/blob/master/library/src/main/java/com/sage42/android/view/MyScrollingTextView.java)
+* [Code](https://github.com/Sage42/AndroidViewUtils/blob/master/library/src/main/java/com/sage42/android/view/fonts/MyScrollingTextView.java)
 * [Sample (Java)](https://github.com/Sage42/AndroidViewUtils/blob/master/samples/src/main/java/com/sage42/android/view_samples/marquee/MarqueeTextActivity.java)
 * [Sample (Layout)](https://github.com/Sage42/AndroidViewUtils/blob/master/samples/res/layout/marquee_text_activity.xml)
 

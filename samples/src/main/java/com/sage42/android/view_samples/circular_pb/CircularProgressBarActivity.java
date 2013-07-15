@@ -8,7 +8,7 @@ import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.sage42.android.view.CircularProgressBar;
+import com.sage42.android.view.ui.CircularProgressBar;
 import com.sage42.android.view_samples.R;
 
 /**

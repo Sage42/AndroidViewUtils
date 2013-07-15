@@ -1,9 +1,9 @@
-package com.sage42.android.view;
+package com.sage42.android.view.fonts;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.widget.Button;
+import android.widget.CompoundButton;
 
 import com.sage42.android.view.R;
 
@@ -25,11 +25,41 @@ import com.sage42.android.view.R;
  * @author Corey Scott (corey.scott@sage42.com)
  *
  */
-public class MyButton extends Button
+public class MyCompoundButton extends CompoundButton
 {
-    public MyButton(final Context context, final AttributeSet attrs)
+
+    public MyCompoundButton(final Context context, final AttributeSet attrs, final int defStyle)
+    {
+        super(context, attrs, defStyle);
+        this.initCustomFonts(context, attrs, defStyle);
+    }
+
+    public MyCompoundButton(final Context context, final AttributeSet attrs)
     {
         super(context, attrs);
+        this.initCustomFonts(context, attrs, -1);
+    }
+
+    public MyCompoundButton(final Context context)
+    {
+        super(context);
+        this.initCustomFonts(context, null, -1);
+    }
+
+    /**
+     * Extract any custom font related settings from supplied args
+     * 
+     * @param context
+     * @param attrs
+     * @param defStyle
+     */
+    private void initCustomFonts(final Context context, final AttributeSet attrs, final int defStyle)
+    {
+        if (this.isInEditMode())
+        {
+            // this is preview mode so we need to stop processing
+            return;
+        }
 
         // Fonts work as a combination of particular family and the style. 
         final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.fonts);
@@ -37,10 +67,8 @@ public class MyButton extends Button
         final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);
         args.recycle();
 
-        if (!this.isInEditMode())
-        {
-            // Set the typeface based on the family and the style combination.
-            this.setTypeface(FontManager.getInstance().get(context, family, style));
-        }
+        // Set the typeface based on the family and the style combination.
+        this.setTypeface(FontManager.getInstance().get(context, family, style));
     }
+
 }
