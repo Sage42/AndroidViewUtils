@@ -66,8 +66,11 @@ public class MyTextView extends TextView
         final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);
         args.recycle();
 
-        // Set the typeface based on the family and the style combination.
-        this.setTypeface(FontManager.getInstance().get(context, family, style));
+        if (family != null)
+        {
+            // Set the typeface based on the family and the style combination.
+            this.setTypeface(FontManager.getInstance().get(context, family, style));
+        }
     }
 
 }

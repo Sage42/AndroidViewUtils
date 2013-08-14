@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
@@ -36,21 +38,20 @@ import com.sage42.android.view.R;
 /**
  * Reference: http://sriramramani.wordpress.com/2012/11/29/custom-fonts/
  */
-@SuppressWarnings("nls")
 public class FontManager
 {
-    public static final String  FONT_NAME_ROBOTO_THIN           = "Roboto-Thin";
-    public static final String  FONT_NAME_ROBOTO_LIGHT          = "Roboto-Light";
-    public static final String  FONT_NAME_ROBOTO_REGULAR        = "Roboto-Regular";
-    public static final String  FONT_NAME_ROBOTO_MEDIUM         = "Roboto-Medium";
-    public static final String  FONT_NAME_ROBOTO_BOLD           = "Roboto-Bold";
-    public static final String  FONT_NAME_ROBOTO_BLACK          = "Roboto-Black";
-    public static final String  FONT_NAME_ROBOTO_CONDENSED      = "Roboto-Condensed";
-    public static final String  FONT_NAME_ROBOTO_BOLD_CONDENSED = "Roboto-Bold-Condensed";
+    public static final String      FONT_NAME_ROBOTO_THIN           = "Roboto-Thin";                    //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_LIGHT          = "Roboto-Light";                   //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_REGULAR        = "Roboto-Regular";                 //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_MEDIUM         = "Roboto-Medium";                  //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_BOLD           = "Roboto-Bold";                    //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_BLACK          = "Roboto-Black";                   //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_CONDENSED      = "Roboto-Condensed";               //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_BOLD_CONDENSED = "Roboto-Bold-Condensed";          //$NON-NLS-1$
 
-    private static final String TAG                             = FontManager.class.getSimpleName();
+    private static final String     TAG                             = FontManager.class.getSimpleName();
 
-    private List<Font>          mFonts;
+    private final Map<String, Font> mFonts;
 
     //Making FontManager a singleton class
     private static class InstanceHolder
@@ -68,6 +69,8 @@ public class FontManager
     {
         // enforce singleton
         super();
+
+        this.mFonts = new HashMap<String, Font>();
     }
 
     private static class FontStyle
@@ -83,28 +86,6 @@ public class FontManager
 
         // different styles for this font.
         List<FontStyle> styles;
-    }
-
-    // Parse the resId and initialize the parser.
-    public void initialize(final Context context)
-    {
-        this.mFonts = new ArrayList<Font>();
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_THIN, R.raw.roboto_thin,
-                        R.raw.roboto_thin_italic));
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_LIGHT, R.raw.roboto_light,
-                        R.raw.roboto_light_italic));
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_REGULAR, R.raw.roboto_regular,
-                        R.raw.roboto_regular_italic));
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_MEDIUM, R.raw.roboto_medium,
-                        R.raw.roboto_medium_italic));
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD, R.raw.roboto_bold,
-                        R.raw.roboto_bold_italic));
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_BLACK, R.raw.roboto_black,
-                        R.raw.roboto_black_italic));
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_CONDENSED, R.raw.roboto_condensed,
-                        R.raw.roboto_condensed_italic));
-        this.mFonts.add(this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED, R.raw.roboto_bold_condensed,
-                        R.raw.roboto_bold_condensed_italic));
     }
 
     @SuppressWarnings("synthetic-access")
@@ -126,7 +107,7 @@ public class FontManager
             fontStyle.font = this.getFontFromRes(context, normalResId);
             fontStyle.style = Typeface.NORMAL;
             font.styles.add(fontStyle);
-            Log.d(FontManager.TAG, "Loaded (Normal): " + fontName);
+            Log.d(FontManager.TAG, "Loaded (Normal): " + fontName); //$NON-NLS-1$
         }
 
         if (italicResId != null)
@@ -135,45 +116,92 @@ public class FontManager
             fontStyle.font = this.getFontFromRes(context, italicResId);
             fontStyle.style = Typeface.ITALIC;
             font.styles.add(fontStyle);
-            Log.d(FontManager.TAG, "Loaded (Italic): " + fontName);
+            Log.d(FontManager.TAG, "Loaded (Italic): " + fontName); //$NON-NLS-1$
         }
 
         return font;
     }
 
-    public Typeface get(final Context context, final String family, final int inStyle)
+    public Typeface get(final Context context, final String fontFamily, final int inStyle)
     {
-        if (this.mFonts == null)
+        if (!this.mFonts.containsKey(fontFamily))
         {
-            this.initialize(context);
+            // attempt to load font JIT at runtime
+            this.loadFont(context, fontFamily);
+
+            // return null, if load failed
+            if (!this.mFonts.containsKey(fontFamily))
+            {
+                Log.d(FontManager.TAG, "Failed to load: " + fontFamily); //$NON-NLS-1$
+                return null;
+            }
         }
 
-        int style = inStyle;
+        final int style = inStyle;
 
-        for (final Font font : this.mFonts)
+        final Font font = this.mFonts.get(fontFamily);
+        for (final FontStyle fontStyle : font.styles)
         {
-            for (final String familyName : font.families)
+            if (fontStyle.style == style)
             {
-                if (familyName.equals(family))
-                {
-                    // if no style in specified, return normal style.
-                    if (style == -1)
-                    {
-                        style = Typeface.NORMAL;
-                    }
-
-                    for (final FontStyle fontStyle : font.styles)
-                    {
-                        if (fontStyle.style == style)
-                        {
-                            return fontStyle.font;
-                        }
-                    }
-                }
+                return fontStyle.font;
             }
         }
 
         return null;
+    }
+
+    private void loadFont(final Context context, final String fontFamily)
+    {
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_THIN))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_THIN, R.raw.roboto_thin,
+                            R.raw.roboto_thin_italic));
+            return;
+        }
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_LIGHT))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_LIGHT, R.raw.roboto_light,
+                            R.raw.roboto_light_italic));
+            return;
+        }
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_REGULAR))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_REGULAR,
+                            R.raw.roboto_regular, R.raw.roboto_regular_italic));
+            return;
+        }
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_MEDIUM))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_MEDIUM, R.raw.roboto_medium,
+                            R.raw.roboto_medium_italic));
+            return;
+        }
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD, R.raw.roboto_bold,
+                            R.raw.roboto_bold_italic));
+            return;
+        }
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BLACK))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BLACK, R.raw.roboto_black,
+                            R.raw.roboto_black_italic));
+            return;
+        }
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_CONDENSED))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_CONDENSED,
+                            R.raw.roboto_condensed, R.raw.roboto_condensed_italic));
+            return;
+        }
+        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED))
+        {
+            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED,
+                            R.raw.roboto_bold_condensed, R.raw.roboto_bold_condensed_italic));
+        }
+
+        Log.d(FontManager.TAG, "Failed to load font, unknown fontFamily: " + fontFamily); //$NON-NLS-1$
     }
 
     /**
@@ -197,7 +225,7 @@ public class FontManager
                 return null;
             }
 
-            final String outPath = context.getCacheDir() + "/tmp" + System.currentTimeMillis() + ".raw";
+            final String outPath = context.getCacheDir() + "/tmp" + System.currentTimeMillis() + ".raw"; //$NON-NLS-1$ //$NON-NLS-2$
 
             final byte[] buffer = new byte[is.available()];
             final BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outPath));
@@ -248,12 +276,13 @@ public class FontManager
     public void addCustomFont(final Context context, final String fontFamily, final Integer normalFontRes,
                     final Integer italicFontRes)
     {
-        if (this.mFonts == null)
+        if (this.mFonts.containsKey(fontFamily))
         {
-            this.initialize(context);
+            // not need to load it again
+            return;
         }
 
-        this.mFonts.add(this.addFont(context, fontFamily, normalFontRes, italicFontRes));
+        this.mFonts.put(fontFamily, this.addFont(context, fontFamily, normalFontRes, italicFontRes));
     }
 
 }
