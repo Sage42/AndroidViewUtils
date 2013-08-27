@@ -3,7 +3,8 @@ project.group = 'com.sage42.android.view'
 project.version = '1.0.1'
 
 apply plugin: 'android-library'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 repositories
 {
@@ -37,13 +38,48 @@ android
     }
 }
 
-publishing
+configurations
 {
-    publications
+    archives
+    { extendsFrom configurations.default }
+}
+
+signing
+{
+    required
     {
-        maven(MavenPublication)
+        has("release") && gradle.taskGraph.hasTask("uploadArchives")
+    }
+    sign configurations.archives
+}
+
+def localRepoPath = "file://" +  new File(System.getProperty("user.home"), ".m2/repository").absolutePath
+
+uploadArchives 
+{
+    configuration = configurations.archives
+    repositories.mavenDeployer 
+    {
+        beforeDeployment 
+        { 
+            MavenDeployment deployment -> signing.signPom(deployment) 
+        }
+
+        repository(url: localRepoPath) 
+
+        pom.project 
         {
+            packaging 'aar'
+
+            licenses 
+            {
+                license 
+                {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
         }
     }
 }
-
