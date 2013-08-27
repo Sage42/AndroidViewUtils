@@ -1,3 +1,7 @@
+// Project properties
+project.group = 'com.sage42.android.view'
+project.version = '1.0.1'
+
 apply plugin: 'android-library'
 apply plugin: 'maven-publish'
 
@@ -5,10 +9,6 @@ repositories
 {
     mavenLocal()
     mavenCentral()
-}
-
-dependencies
-{
 }
 
 android
@@ -36,3 +36,14 @@ android
         }
     }
 }
+
+publishing
+{
+    publications
+    {
+        maven(MavenPublication)
+        {
+        }
+    }
+}
+
