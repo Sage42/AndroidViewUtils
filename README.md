@@ -25,6 +25,7 @@ Just like a normal progress bar only in circle form.  This is ideal for count do
 Standard Android View Elements that can be used with custom fonts and a custom font manager. 
 
 Included are the official Roboto fonts so that you have Roboto on older Android versions.
+It is possible to use your own custom fonts, please refer to the sample app.
 Not all of the UI elements have been enabled yet, so if there is something you need that is missing please submit a ticket or pull request.
 
 ![Custom Font Enabled View Elements](website/images/custom_fonts.png)
