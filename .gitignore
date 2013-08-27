@@ -2,6 +2,9 @@
 *.apk
 *.ap_
 
+# Android Annotations
+*.apt_generated
+
 # files for the dex VM
 *.dex
 
@@ -9,15 +12,32 @@
 *.class
 
 # generated files
-**/bin/
-**/gen/
+bin/
+build/
+gen/
 
 # Local configuration file (sdk path, etc)
-**/local.properties
-**/project.properties
+local.properties
+project.properties
 
 # Eclipse project files
 .classpath
 .project
-**/.settings/
+.factorypath
+.settings/
 
+# More Eclipse crud
+hs_err_pid*.log
+
+# Android Studio Files
+*.iml
+.idea/
+
+# KDE file manager metadata
+.directory
+
+# Gradle files
+**/.gradle/*
+
+# Other
+**/.repository/*
