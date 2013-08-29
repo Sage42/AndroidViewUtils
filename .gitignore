@@ -37,7 +37,7 @@ hs_err_pid*.log
 .directory
 
 # Gradle files
-**/.gradle/*
+.gradle/*
 
 # Other
 **/.repository/*
