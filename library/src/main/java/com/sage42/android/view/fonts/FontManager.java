@@ -137,7 +137,8 @@ public class FontManager
             }
         }
 
-        final int style = inStyle;
+        // default to normal style if not was supplied
+        final int style = (inStyle >= 0) ? inStyle : Typeface.NORMAL;
 
         final Font font = this.mFonts.get(fontFamily);
         for (final FontStyle fontStyle : font.styles)

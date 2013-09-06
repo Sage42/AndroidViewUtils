@@ -34,14 +34,21 @@ public class CircularProgressBarActivity extends Activity
     private static final int    ONE_SECOND_IN_MS = 1000;
 
     // view elements
-    private CircularProgressBar mCountdownBar;
-    private CircularProgressBar mCountUpBar;
-    private CircularProgressBar mCountDownNoText;
+    private CircularProgressBar mCountdownBar1;
+    private CircularProgressBar mCountdownBar2;
+    private CircularProgressBar mCountdownBar3;
+    
+    private CircularProgressBar mCountUpBar1;
+    private CircularProgressBar mCountUpBar2;
+    private CircularProgressBar mCountUpBar3;
+
+    private CircularProgressBar mCounterNoText1;
+    private CircularProgressBar mCounterNoText2;
+    private CircularProgressBar mCounterNoText3;
 
     // some countdown timers to provide a little action
     private CountDownTimer      mTimerCountDown;
     private CountDownTimer      mTimerCountUp;
-    private CountDownTimer      mTimerCountDownNoText;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState)
@@ -52,9 +59,17 @@ public class CircularProgressBarActivity extends Activity
         this.setContentView(R.layout.circular_progress_bar_activity);
 
         // wire up the ui elements
-        this.mCountdownBar = (CircularProgressBar) this.findViewById(R.id.countdown_bar);
-        this.mCountUpBar = (CircularProgressBar) this.findViewById(R.id.countup_bar);
-        this.mCountDownNoText = (CircularProgressBar) this.findViewById(R.id.countdown_bar_no_text);
+        this.mCountdownBar1 = (CircularProgressBar) this.findViewById(R.id.countdown_bar1);
+        this.mCountdownBar2 = (CircularProgressBar) this.findViewById(R.id.countdown_bar2);
+        this.mCountdownBar3 = (CircularProgressBar) this.findViewById(R.id.countdown_bar3);
+
+        this.mCountUpBar1 = (CircularProgressBar) this.findViewById(R.id.countup_bar1);
+        this.mCountUpBar2 = (CircularProgressBar) this.findViewById(R.id.countup_bar2);
+        this.mCountUpBar3 = (CircularProgressBar) this.findViewById(R.id.countup_bar3);
+
+        this.mCounterNoText1 = (CircularProgressBar) this.findViewById(R.id.counter_no_text1);
+        this.mCounterNoText2 = (CircularProgressBar) this.findViewById(R.id.counter_no_text2);
+        this.mCounterNoText3 = (CircularProgressBar) this.findViewById(R.id.counter_no_text3);
 
         // enable the back btn on newer phones
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB)
@@ -82,15 +97,26 @@ public class CircularProgressBarActivity extends Activity
             public void onTick(final long millisUntilFinished)
             {
                 final int secondsRemaining = (int) (millisUntilFinished / ONE_SECOND_IN_MS);
-                CircularProgressBarActivity.this.mCountdownBar.setProgress(secondsRemaining);
+                CircularProgressBarActivity.this.mCountdownBar1.setProgress(secondsRemaining);
+                CircularProgressBarActivity.this.mCountdownBar2.setProgress(secondsRemaining);
+                CircularProgressBarActivity.this.mCountdownBar3.setProgress(secondsRemaining);
+
+                CircularProgressBarActivity.this.mCounterNoText1.setProgress(secondsRemaining);
+                CircularProgressBarActivity.this.mCounterNoText3.setProgress(secondsRemaining);
             }
 
             @Override
             public void onFinish()
             {
-                CircularProgressBarActivity.this.mCountdownBar.setProgress(0);
+                CircularProgressBarActivity.this.mCountdownBar1.setProgress(0);
+                CircularProgressBarActivity.this.mCountdownBar2.setProgress(0);
+                CircularProgressBarActivity.this.mCountdownBar3.setProgress(0);
+
+                CircularProgressBarActivity.this.mCounterNoText1.setProgress(0);
+                CircularProgressBarActivity.this.mCounterNoText3.setProgress(0);
+
                 // make it disappear (because we can)
-                CircularProgressBarActivity.this.mCountdownBar.setVisibility(View.INVISIBLE);
+                CircularProgressBarActivity.this.mCountdownBar3.setVisibility(View.INVISIBLE);
             }
         }.start();
 
@@ -100,29 +126,24 @@ public class CircularProgressBarActivity extends Activity
             public void onTick(final long millisUntilFinished)
             {
                 final int secondsElapsed = 30 - ((int) (millisUntilFinished / ONE_SECOND_IN_MS));
-                CircularProgressBarActivity.this.mCountUpBar.setProgress(secondsElapsed);
+                CircularProgressBarActivity.this.mCountUpBar1.setProgress(secondsElapsed);
+                CircularProgressBarActivity.this.mCountUpBar2.setProgress(secondsElapsed);
+                CircularProgressBarActivity.this.mCountUpBar3.setProgress(secondsElapsed);
+                
+                CircularProgressBarActivity.this.mCounterNoText2.setProgress(secondsElapsed);
             }
 
             @Override
             public void onFinish()
             {
-                CircularProgressBarActivity.this.mCountUpBar.setProgress(30);
-            }
-        }.start();
+                CircularProgressBarActivity.this.mCountUpBar1.setProgress(30);
+                CircularProgressBarActivity.this.mCountUpBar2.setProgress(30);
+                CircularProgressBarActivity.this.mCountUpBar3.setProgress(30);
 
-        this.mTimerCountDownNoText = new CountDownTimer(30 * ONE_SECOND_IN_MS, ONE_SECOND_IN_MS)
-        {
-            @Override
-            public void onTick(final long millisUntilFinished)
-            {
-                final int secondsRemaining = (int) (millisUntilFinished / ONE_SECOND_IN_MS);
-                CircularProgressBarActivity.this.mCountDownNoText.setProgress(secondsRemaining);
-            }
+                CircularProgressBarActivity.this.mCounterNoText2.setProgress(30);
 
-            @Override
-            public void onFinish()
-            {
-                CircularProgressBarActivity.this.mCountDownNoText.setProgress(0);
+                // make it disappear (because we can)
+                CircularProgressBarActivity.this.mCountUpBar3.setVisibility(View.INVISIBLE);
             }
         }.start();
     }
@@ -141,10 +162,6 @@ public class CircularProgressBarActivity extends Activity
         if (this.mTimerCountUp != null)
         {
             this.mTimerCountUp.cancel();
-        }
-        if (this.mTimerCountDownNoText != null)
-        {
-            this.mTimerCountDownNoText.cancel();
         }
     }
 
