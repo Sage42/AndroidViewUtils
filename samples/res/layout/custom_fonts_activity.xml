@@ -3,10 +3,10 @@
 	xmlns:sage42="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:paddingBottom="@dimen/activity_vertical_margin"
-	android:paddingLeft="@dimen/activity_horizontal_margin"
-	android:paddingRight="@dimen/activity_horizontal_margin"
-	android:paddingTop="@dimen/activity_vertical_margin" >
+	android:paddingBottom="12dp"
+	android:paddingLeft="12dp"
+	android:paddingRight="12dp"
+	android:paddingTop="12dp" >
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -19,7 +19,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_thin"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Thin" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -28,7 +28,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_thin_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-Thin" />
 
@@ -38,7 +38,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_light"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Light" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -47,7 +47,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_light_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-Light" />
 
@@ -57,7 +57,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_regular"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Regular" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -66,7 +66,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_regular_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-Regular" />
 
@@ -76,7 +76,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_medium"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Medium" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -85,7 +85,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_medium_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-medium" />
 
@@ -95,7 +95,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_bold"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Bold" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -104,7 +104,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_bold_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-Bold" />
 
@@ -114,7 +114,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_black"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Black" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -123,7 +123,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_black_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-Black" />
 
@@ -133,7 +133,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_condensed"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Condensed" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -142,7 +142,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_condensed_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-Condensed" />
 
@@ -152,7 +152,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_bold_condensed"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			sage42:fontFamily="Roboto-Bold-Condensed" />
 
 		<com.sage42.android.view.fonts.MyTextView
@@ -161,7 +161,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_roboto_bold_condensed_italic"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:textStyle="italic"
 			sage42:fontFamily="Roboto-Bold-Condensed" />
 
@@ -171,7 +171,7 @@
 			android:paddingBottom="@dimen/activity_vertical_margin"
 			android:paddingTop="@dimen/activity_vertical_margin"
 			android:text="@string/custom_font_baroque_script"
-			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textAppearance="?android:attr/textAppearanceSmall"
 			sage42:fontFamily="baroqueScript" />
 
 		<com.sage42.android.view.fonts.MyTextView
