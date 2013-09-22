@@ -115,15 +115,18 @@ public class CircularProgressBar extends View
             this.mBgPaint = new Paint();
             this.mBgPaint.setColor(bgColor);
             this.mBgPaint.setStyle(Style.STROKE);
+            this.mBgPaint.setAntiAlias(true);
             this.mBgPaint.setStrokeWidth(bgStrokeWidth);
 
             this.mProgressPaint = new Paint();
             this.mProgressPaint.setColor(progressColor);
             this.mProgressPaint.setStyle(Style.STROKE);
+            this.mProgressPaint.setAntiAlias(true);
             this.mProgressPaint.setStrokeWidth(progressStrokeWidth);
 
             this.mTextPaint = new Paint();
             this.mTextPaint.setColor(textColor);
+            this.mTextPaint.setAntiAlias(true);
             this.mTextPaint.setStyle(Style.STROKE);
             this.mTextPaint.setTextAlign(Align.CENTER);
             this.mTextPaint.setTextSize(textSize);
