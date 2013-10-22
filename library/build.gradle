@@ -43,6 +43,7 @@ android
     }
 }
 
+apply plugin: 'maven'
 configurations
 {
     archives
