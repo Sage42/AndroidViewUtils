@@ -11,7 +11,6 @@
 #proguard.config=${sdk.dir}/tools/proguard/proguard-android.txt:proguard-project.txt
 
 # Project target.
-target=Google Inc.:Google APIs:17
+target=Google Inc.:Google APIs:18
 android.library=true
 android.library.reference.1=..\\..\\ActionBarSherlock\\actionbarsherlock
-android.library.reference.2=../../../adt-bundle-windows-x86_64/sdk/extras/google/google_play_services/libproject/google-play-services_lib
