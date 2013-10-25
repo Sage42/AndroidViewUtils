@@ -21,3 +21,11 @@ ext.compileSdkVersion=18
 ext.buildToolsVersion="18.0.1"
 ext.minSdkVersion=8
 ext.targetSdkVersion=18
+
+// setup local and remove maven usage for all subprojects
+configure(subprojects) { subproject ->
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}

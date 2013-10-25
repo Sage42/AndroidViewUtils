@@ -6,12 +6,6 @@ apply plugin: 'android-library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-repositories
-{
-    mavenLocal()
-    mavenCentral()
-}
-
 dependencies
 {
     compile 'com.android.support:support-v4:13.0.+'
