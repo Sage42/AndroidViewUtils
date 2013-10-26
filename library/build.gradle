@@ -13,13 +13,13 @@ dependencies
 
 android
 {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
-
+    buildToolsVersion "$androidBuildToolsVersion"
+    compileSdkVersion androidCompileSdkVersion
+    
     defaultConfig
     {
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
     }
 
     sourceSets
@@ -81,5 +81,30 @@ uploadArchives
                 }
             }
         }
+    }
+}
+
+// Simple Local Sonar Config
+// To use: gradle sonarRunner
+apply plugin: 'sonar-runner'
+sonarRunner 
+{
+    sonarProperties 
+    {
+        properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
+        properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
+        properties["sonar.binaries"] = file("build/classes/debug")
+
+        property "sonar.projectKey", "AndroidViewUtils"
+        property "sonar.projectName", "Sage 42 - AndroidViewUtils"
+        property "sonar.projectVersion", "1.0"
+        property "sonar.java.target", "1.6"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.jdbc.url", "jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.username", "sonar"
+        property "sonar.jdbc.password", "sonar"
+        property "sonar.dynamicAnalysis", "reuseReports"
+        property "sonar.surefire.reportsPath", "build/instrumentTest-results/connected/"
     }
 }
