@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.BaseColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -143,7 +144,7 @@ public abstract class CursorFragmentPagerAdapter extends FragmentPagerAdapter
         this.mCursor = newCursor;
         if (newCursor != null)
         {
-            this.mRowIDColumn = newCursor.getColumnIndexOrThrow("_id"); //$NON-NLS-1$
+            this.mRowIDColumn = newCursor.getColumnIndexOrThrow(BaseColumns._ID);
             this.mDataValid = true;
         }
         else
