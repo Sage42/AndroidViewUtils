@@ -37,6 +37,7 @@ import com.sage42.android.view.R;
  */
 public class CircularProgressBar extends View
 {
+    private static final int   DEFAULT_MAX_VALUE    = 100;
     private static final float ADJUST_FOR_12_OCLOCK = 270f;
 
     // properties for the background circle
@@ -53,7 +54,7 @@ public class CircularProgressBar extends View
     private int                mMax;
 
     // current progress between 0 and mMax
-    private int                mProgress            = 0;
+    private int                mProgress;
 
     // diameter (in dp) of the circle
     private float              mDiameter;
@@ -107,7 +108,7 @@ public class CircularProgressBar extends View
             this.mLayoutMargin = args.getDimensionPixelSize(R.styleable.circularProgressBar_android_layout_margin,
                             (int) defaultMargin);
 
-            this.mMax = args.getInt(R.styleable.circularProgressBar_max, 100);
+            this.mMax = args.getInt(R.styleable.circularProgressBar_max, DEFAULT_MAX_VALUE);
 
             this.mDiameter = args.getDimension(R.styleable.circularProgressBar_diameter, defaultDiameter);
 
@@ -148,7 +149,7 @@ public class CircularProgressBar extends View
         }
 
         // draw bg circle in the center
-        final float radius = (this.mDiameter / 2);
+        final float radius = this.mDiameter / 2;
         final float center = radius + this.mLayoutMargin;
         canvas.drawCircle(center, center, radius, this.mBgPaint);
 
@@ -238,4 +239,5 @@ public class CircularProgressBar extends View
     {
         this.mDiameter = diameter;
     }
+
 }

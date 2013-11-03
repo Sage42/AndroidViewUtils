@@ -12,16 +12,15 @@ public abstract class CursorFragmentPagerAdapter extends FragmentStatePagerAdapt
 {
     protected Cursor mCursor;
 
-    public CursorFragmentPagerAdapter(final FragmentManager fm, final Cursor cursor)
+    public CursorFragmentPagerAdapter(final FragmentManager fragmentManager, final Cursor cursor)
     {
-        super(fm);
+        super(fragmentManager);
         this.mCursor = cursor;
     }
 
     @Override
     public Fragment getItem(final int position)
     {
-
         if (this.mCursor == null)
         {
             return null;
@@ -31,7 +30,7 @@ public abstract class CursorFragmentPagerAdapter extends FragmentStatePagerAdapt
         return this.getItem(this.mCursor);
     }
 
-    public abstract Fragment getItem(Cursor cursor);
+    public abstract Fragment getItem(final Cursor cursor);
 
     @Override
     public int getCount()
@@ -40,21 +39,17 @@ public abstract class CursorFragmentPagerAdapter extends FragmentStatePagerAdapt
         {
             return 0;
         }
-        else
-        {
-            return this.mCursor.getCount();
-        }
-
+        return this.mCursor.getCount();
     }
 
-    public void swapCursor(final Cursor c)
+    public void swapCursor(final Cursor cursor)
     {
-        if (this.mCursor == c)
+        if (this.mCursor == cursor)
         {
             return;
         }
 
-        this.mCursor = c;
+        this.mCursor = cursor;
         this.notifyDataSetChanged();
     }
 
@@ -62,4 +57,5 @@ public abstract class CursorFragmentPagerAdapter extends FragmentStatePagerAdapt
     {
         return this.mCursor;
     }
+
 }

@@ -31,6 +31,8 @@ public class AnimateOpenAndClosed extends Animation
 
     public AnimateOpenAndClosed(final View view, final int openHeight, final int closedHeight, final boolean isOpening)
     {
+        super();
+
         this.mView = view;
         this.mHeightOpen = openHeight;
         this.mHeightClose = closedHeight;
@@ -38,7 +40,7 @@ public class AnimateOpenAndClosed extends Animation
     }
 
     @Override
-    protected void applyTransformation(final float interpolatedTime, final Transformation t)
+    protected void applyTransformation(final float interpolatedTime, final Transformation transformation)
     {
         int newHeight;
         final int diff = this.mHeightOpen - this.mHeightClose;
@@ -52,12 +54,6 @@ public class AnimateOpenAndClosed extends Animation
         }
         this.mView.getLayoutParams().height = newHeight;
         this.mView.requestLayout();
-    }
-
-    @Override
-    public void initialize(final int width, final int height, final int parentWidth, final int parentHeight)
-    {
-        super.initialize(width, height, parentWidth, parentHeight);
     }
 
     @Override

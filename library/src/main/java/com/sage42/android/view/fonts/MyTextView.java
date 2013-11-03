@@ -1,11 +1,9 @@
 package com.sage42.android.view.fonts;
 
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
-import com.sage42.android.view.R;
 
 /**
  * Copyright (C) 2013- Sage 42 App Sdn Bhd
@@ -30,29 +28,28 @@ public class MyTextView extends TextView
     public MyTextView(final Context context)
     {
         super(context);
-        this.initCustomFonts(context, null, -1);
+        this.initCustomFonts(context, null);
     }
 
     public MyTextView(final Context context, final AttributeSet attrs)
     {
         super(context, attrs);
-        this.initCustomFonts(context, attrs, -1);
+        this.initCustomFonts(context, attrs);
     }
 
-    public MyTextView(final Context context, final AttributeSet attrs, final int style)
+    public MyTextView(final Context context, final AttributeSet attrs, final int defStyle)
     {
-        super(context, attrs);
-        this.initCustomFonts(context, attrs, style);
+        super(context, attrs, defStyle);
+        this.initCustomFonts(context, attrs);
     }
 
     /**
-     * Extract any custom font related settings from supplied args
+     * Extract any custom font related settings from supplied args.
      * 
      * @param context
      * @param attrs
-     * @param inStyle
      */
-    private void initCustomFonts(final Context context, final AttributeSet attrs, final int defStyle)
+    private void initCustomFonts(final Context context, final AttributeSet attrs)
     {
         if (this.isInEditMode())
         {
@@ -61,15 +58,10 @@ public class MyTextView extends TextView
         }
 
         // Fonts work as a combination of particular family and the style. 
-        final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.fonts);
-        final String family = args.getString(R.styleable.fonts_fontFamily);
-        final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);
-        args.recycle();
-
-        if (family != null)
+        final Typeface typeface = FontManager.extractTypeface(context, attrs);
+        if (typeface != null)
         {
-            // Set the typeface based on the family and the style combination.
-            this.setTypeface(FontManager.getInstance().get(context, family, style));
+            this.setTypeface(typeface);
         }
     }
 

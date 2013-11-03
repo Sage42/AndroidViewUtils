@@ -23,35 +23,47 @@ public class MyGestureDetector extends SimpleOnGestureListener
     }
 
     @Override
-    public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float velocityX, final float velocityY)
+    public boolean onFling(final MotionEvent event1, final MotionEvent event2, final float velocityX,
+                    final float velocityY)
     {
         try
         {
-            if (Math.abs(e1.getY() - e2.getY()) > MyGestureDetector.SWIPE_MAX_OFF_PATH)
+            if (Math.abs(event1.getY() - event2.getY()) > MyGestureDetector.SWIPE_MAX_OFF_PATH)
             {
                 return false;
             }
-            if (((e1.getX() - e2.getX()) > MyGestureDetector.SWIPE_MIN_DISTANCE)
+            if (((event1.getX() - event2.getX()) > MyGestureDetector.SWIPE_MIN_DISTANCE)
                             && (Math.abs(velocityX) > MyGestureDetector.SWIPE_THRESHOLD_VELOCITY))
             {
                 // right to left swipe
                 this.mCallback.onSwipe(SwipeDirection.LEFT);
             }
-            else if (((e2.getX() - e1.getX()) > MyGestureDetector.SWIPE_MIN_DISTANCE)
+            else if (((event2.getX() - event1.getX()) > MyGestureDetector.SWIPE_MIN_DISTANCE)
                             && (Math.abs(velocityX) > MyGestureDetector.SWIPE_THRESHOLD_VELOCITY))
             {
                 // left to right swipe
                 this.mCallback.onSwipe(SwipeDirection.RIGHT);
             }
         }
-        catch (final Exception e)
+        catch (final RuntimeException exception)
         {
             if (BuildConfig.DEBUG)
             {
-                Log.e(MyGestureDetector.TAG, e.getMessage(), e);
+                Log.e(MyGestureDetector.TAG, exception.getMessage(), exception);
             }
         }
         return false;
+    }
+
+    /**
+     * This is needed so that we dont need to use an onClick listener in the activity.
+     *  
+     * @see android.view.GestureDetector.SimpleOnGestureListener#onDown(android.view.MotionEvent)
+     */
+    @Override
+    public boolean onDown(final MotionEvent event)
+    {
+        return true;
     }
 
     public interface ISwipeCallbacks
@@ -65,17 +77,6 @@ public class MyGestureDetector extends SimpleOnGestureListener
     public enum SwipeDirection
     {
         LEFT, RIGHT;
-    }
-
-    /**
-     * This is needed so that we dont need to use an onClick listener in the activity
-     *  
-     * @see android.view.GestureDetector.SimpleOnGestureListener#onDown(android.view.MotionEvent)
-     */
-    @Override
-    public boolean onDown(final MotionEvent e)
-    {
-        return true;
     }
 
 }

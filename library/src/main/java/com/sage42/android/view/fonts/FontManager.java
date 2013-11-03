@@ -12,7 +12,9 @@ import java.util.Map;
 
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
+import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.util.AttributeSet;
 import android.util.Log;
 
 import com.sage42.android.view.R;
@@ -34,8 +36,6 @@ import com.sage42.android.view.R;
  * 
  * @author Corey Scott (corey.scott@sage42.com)
  *
- */
-/**
  * Reference: http://sriramramani.wordpress.com/2012/11/29/custom-fonts/
  */
 public class FontManager
@@ -53,19 +53,10 @@ public class FontManager
 
     private final Map<String, Font> mFonts;
 
-    //Making FontManager a singleton class
-    private static class InstanceHolder
-    {
-        private static final FontManager INSTANCE = new FontManager();
-    }
+    // singleton instance
+    private static FontManager      mInstance;
 
-    @SuppressWarnings("synthetic-access")
-    public static FontManager getInstance()
-    {
-        return FontManager.InstanceHolder.INSTANCE;
-    }
-
-    protected FontManager()
+    private FontManager()
     {
         // enforce singleton
         super();
@@ -73,19 +64,13 @@ public class FontManager
         this.mFonts = new HashMap<String, Font>();
     }
 
-    private static class FontStyle
+    public static synchronized FontManager getInstance()
     {
-        int      style;
-        Typeface font;
-    }
-
-    private static class Font
-    {
-        // different font-family names that this Font will respond to.
-        List<String>    families;
-
-        // different styles for this font.
-        List<FontStyle> styles;
+        if (FontManager.mInstance == null)
+        {
+            FontManager.mInstance = new FontManager();
+        }
+        return FontManager.mInstance;
     }
 
     @SuppressWarnings("synthetic-access")
@@ -158,45 +143,38 @@ public class FontManager
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_THIN, R.raw.roboto_thin,
                             R.raw.roboto_thin_italic));
-            return;
         }
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_LIGHT))
+        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_LIGHT))
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_LIGHT, R.raw.roboto_light,
                             R.raw.roboto_light_italic));
-            return;
         }
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_REGULAR))
+        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_REGULAR))
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_REGULAR,
                             R.raw.roboto_regular, R.raw.roboto_regular_italic));
-            return;
         }
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_MEDIUM))
+        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_MEDIUM))
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_MEDIUM, R.raw.roboto_medium,
                             R.raw.roboto_medium_italic));
-            return;
         }
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD))
+        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD))
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD, R.raw.roboto_bold,
                             R.raw.roboto_bold_italic));
-            return;
         }
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BLACK))
+        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BLACK))
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BLACK, R.raw.roboto_black,
                             R.raw.roboto_black_italic));
-            return;
         }
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_CONDENSED))
+        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_CONDENSED))
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_CONDENSED,
                             R.raw.roboto_condensed, R.raw.roboto_condensed_italic));
-            return;
         }
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED))
+        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED))
         {
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED,
                             R.raw.roboto_bold_condensed, R.raw.roboto_bold_condensed_italic));
@@ -206,72 +184,70 @@ public class FontManager
     }
 
     /**
-     * Extend this class and override this method for custom error handling
-     * @param e 
+     * Extend this class and override this method for custom error handling.
+     * 
+     * @param exception 
      */
-    public void reportError(final Exception e)
+    public void logError(final Exception exception)
     {
-        Log.e(FontManager.TAG, e.getMessage(), e);
+        Log.e(FontManager.TAG, exception.getMessage(), exception);
     }
 
     private Typeface getFontFromRes(final Context context, final int resource)
     {
-        Typeface tf = null;
-        InputStream is = null;
+        Typeface typeface = null;
+        InputStream inputStream = null;
         try
         {
-            is = context.getResources().openRawResource(resource);
-            if (is == null)
+            inputStream = context.getResources().openRawResource(resource);
+            if (inputStream == null)
             {
                 return null;
             }
 
             final String outPath = context.getCacheDir() + "/tmp" + System.currentTimeMillis() + ".raw"; //$NON-NLS-1$ //$NON-NLS-2$
 
-            final byte[] buffer = new byte[is.available()];
+            final byte[] buffer = new byte[inputStream.available()];
             final BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outPath));
 
-            int l = 0;
-            while ((l = is.read(buffer)) > 0)
+            int length = 0;
+            while ((length = inputStream.read(buffer)) > 0)
             {
-                bos.write(buffer, 0, l);
+                bos.write(buffer, 0, length);
             }
 
             bos.close();
 
-            tf = Typeface.createFromFile(outPath);
+            typeface = Typeface.createFromFile(outPath);
 
             // clean up
             new File(outPath).delete();
         }
-        catch (final NotFoundException e)
+        catch (final NotFoundException exception)
         {
-            this.reportError(e);
-            return null;
+            this.logError(exception);
         }
-        catch (final IOException e)
+        catch (final IOException exception)
         {
-            this.reportError(e);
-            return null;
+            this.logError(exception);
         }
         finally
         {
             // clean up
-            if (is != null)
+            if (inputStream != null)
             {
                 try
                 {
-                    is.close();
+                    inputStream.close();
                 }
-                catch (final IOException e)
+                catch (final IOException exception)
                 {
-                    this.reportError(e);
-                    return null;
+                    this.logError(exception);
                 }
             }
         }
 
-        return tf;
+        return typeface;
     }
 
     public void addCustomFont(final Context context, final String fontFamily, final Integer normalFontRes,
@@ -284,6 +260,37 @@ public class FontManager
         }
 
         this.mFonts.put(fontFamily, this.addFont(context, fontFamily, normalFontRes, italicFontRes));
+    }
+
+    public static Typeface extractTypeface(final Context context, final AttributeSet attrs)
+    {
+        // Fonts work as a combination of particular family and the style. 
+        final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.fonts);
+        final String family = args.getString(R.styleable.fonts_fontFamily);
+        final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);
+        args.recycle();
+
+        if (family == null)
+        {
+            return null;
+        }
+        // Set the typeface based on the family and the style combination.
+        return FontManager.getInstance().get(context, family, style);
+    }
+
+    private static class FontStyle
+    {
+        int      style;
+        Typeface font;
+    }
+
+    private static class Font
+    {
+        // different font-family names that this Font will respond to.
+        List<String>    families;
+
+        // different styles for this font.
+        List<FontStyle> styles;
     }
 
 }
