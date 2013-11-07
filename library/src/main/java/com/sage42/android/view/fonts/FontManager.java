@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import android.content.Context;
@@ -40,14 +41,14 @@ import com.sage42.android.view.R;
  */
 public class FontManager
 {
-    public static final String      FONT_NAME_ROBOTO_THIN           = "Roboto-Thin";                    //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_LIGHT          = "Roboto-Light";                   //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_REGULAR        = "Roboto-Regular";                 //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_MEDIUM         = "Roboto-Medium";                  //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_BOLD           = "Roboto-Bold";                    //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_BLACK          = "Roboto-Black";                   //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_CONDENSED      = "Roboto-Condensed";               //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_BOLD_CONDENSED = "Roboto-Bold-Condensed";          //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_THIN           = "roboto-thin";                    //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_LIGHT          = "roboto-light";                   //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_REGULAR        = "roboto-regular";                 //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_MEDIUM         = "roboto-medium";                  //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_BOLD           = "roboto-bold";                    //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_BLACK          = "roboto-black";                   //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_CONDENSED      = "roboto-condensed";               //$NON-NLS-1$
+    public static final String      FONT_NAME_ROBOTO_BOLD_CONDENSED = "roboto-bold-condensed";          //$NON-NLS-1$
 
     private static final String     TAG                             = FontManager.class.getSimpleName();
 
@@ -109,15 +110,17 @@ public class FontManager
 
     public Typeface get(final Context context, final String fontFamily, final int inStyle)
     {
-        if (!this.mFonts.containsKey(fontFamily))
+        final String fontFamilyLower = fontFamily.toLowerCase(Locale.US);
+
+        if (!this.mFonts.containsKey(fontFamilyLower))
         {
             // attempt to load font JIT at runtime
-            this.loadFont(context, fontFamily);
+            this.loadFont(context, fontFamilyLower);
 
             // return null, if load failed
-            if (!this.mFonts.containsKey(fontFamily))
+            if (!this.mFonts.containsKey(fontFamilyLower))
             {
-                Log.d(FontManager.TAG, "Failed to load: " + fontFamily); //$NON-NLS-1$
+                Log.e(FontManager.TAG, "Failed to load: " + fontFamilyLower); //$NON-NLS-1$
                 return null;
             }
         }
@@ -125,7 +128,7 @@ public class FontManager
         // default to normal style if not was supplied
         final int style = (inStyle >= 0) ? inStyle : Typeface.NORMAL;
 
-        final Font font = this.mFonts.get(fontFamily);
+        final Font font = this.mFonts.get(fontFamilyLower);
         for (final FontStyle fontStyle : font.styles)
         {
             if (fontStyle.style == style)
@@ -179,8 +182,10 @@ public class FontManager
             this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED,
                             R.raw.roboto_bold_condensed, R.raw.roboto_bold_condensed_italic));
         }
-
-        Log.d(FontManager.TAG, "Failed to load font, unknown fontFamily: " + fontFamily); //$NON-NLS-1$
+        else
+        {
+            Log.e(FontManager.TAG, "Failed to load font, unknown fontFamily: " + fontFamily); //$NON-NLS-1$
+        }
     }
 
     /**
