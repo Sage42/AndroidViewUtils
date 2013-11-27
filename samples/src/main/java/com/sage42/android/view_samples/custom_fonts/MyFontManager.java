@@ -7,6 +7,10 @@ import com.sage42.android.view_samples.R;
 
 public class MyFontManager extends FontManager
 {
+    private MyFontManager()
+    {
+        super();
+    }
 
     // These strings will be the values needed in the layout.xml files
     private static final String BAROQUE_SCRIPT = "baroqueScript"; //$NON-NLS-1$

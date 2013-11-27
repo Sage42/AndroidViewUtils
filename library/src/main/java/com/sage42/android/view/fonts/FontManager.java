@@ -57,7 +57,7 @@ public class FontManager
     // singleton instance
     private static FontManager      mInstance;
 
-    private FontManager()
+    protected FontManager()
     {
         // enforce singleton
         super();
