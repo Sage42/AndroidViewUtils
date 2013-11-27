@@ -1,35 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<declare-styleable name="fonts">
+    <!-- Font Related Stuff -->
+    <declare-styleable name="fonts">
 
-		<!-- using android's -->
-		<attr name="android:textStyle" />
+        <!-- using android's -->
+        <attr name="android:textStyle" />
 
-		<!-- our custom attribute -->
-		<attr name="fontFamily" format="string" />
-	</declare-styleable>
-	<declare-styleable name="circularProgressBar">
+        <!-- our custom attribute -->
+        <attr name="fontFamily" format="string" />
+    </declare-styleable>
 
-		<!-- our custom attribute -->
-		<attr name="max" format="integer" />
-		<attr name="bgColor" format="color" />
-		<attr name="progressColor" format="color" />
-		<attr name="bgStrokeWidth" format="dimension" />
-		<attr name="progressStrokeWidth" format="dimension" />
-		<attr name="diameter" format="dimension" />
-		<attr name="showText" format="boolean" />
+    <!-- Circular Progress Bar -->
+    <declare-styleable name="circularProgressBar">
 
-		<!-- Std stuff -->
-		<attr name="android:textSize" />
-		<attr name="android:textColor" />
-		<attr name="android:layout_margin" />
-	</declare-styleable>
+        <!-- our custom attribute -->
+        <attr name="max" format="integer" />
+        <attr name="bgColor" format="color" />
+        <attr name="progressColor" format="color" />
+        <attr name="bgStrokeWidth" format="dimension" />
+        <attr name="progressStrokeWidth" format="dimension" />
+        <attr name="diameter" format="dimension" />
+        <attr name="showText" format="boolean" />
 
-	<declare-styleable name="clickToOpenClosedLayout">
-		<attr name="initialAnimationDuration" format="integer" />
-		<attr name="animationDuration" format="integer" />
-		<attr name="closedHeight" format="integer" />
-	</declare-styleable>
+        <!-- Std stuff -->
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:layout_margin" />
+    </declare-styleable>
+
+    <!-- Segmented Progress Bar -->
+    <declare-styleable name="segmentedProgressBar">
+
+        <!-- our custom attribute -->
+        <attr name="startColor" format="color" />
+        <attr name="endColor" format="color" />
+        <attr name="unfilledColor" format="color" />
+        <attr name="segmentCount" format="integer" />
+
+        <!-- Std stuff -->
+        <attr name="android:interpolator" />
+    </declare-styleable>
+
+    <!-- Click To Open/Close Layout -->
+    <declare-styleable name="clickToOpenClosedLayout">
+        <attr name="initialAnimationDuration" format="integer" />
+        <attr name="animationDuration" format="integer" />
+        <attr name="closedHeight" format="integer" />
+    </declare-styleable>
 
 </resources>

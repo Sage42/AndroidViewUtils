@@ -1,4 +1,4 @@
-package com.sage42.android.view_samples.circular_pb;
+package com.sage42.android.view_samples.ui;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -7,7 +7,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="19" />
 
     <supports-screens android:anyDensity="true" />
 
@@ -28,8 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sage42.android.view_samples.circular_pb.CircularProgressBarActivity"
+            android:name="com.sage42.android.view_samples.ui.CircularProgressBarActivity"
             android:label="@string/menu_circular_progress_bar" />
+        <activity
+            android:name="com.sage42.android.view_samples.ui.SegmentedProgressBarActivity"
+            android:label="@string/menu_segmented_progress_bar" />
         <activity
             android:name="com.sage42.android.view_samples.custom_fonts.CustomFontsActivity"
             android:label="@string/menu_custom_font_views" />

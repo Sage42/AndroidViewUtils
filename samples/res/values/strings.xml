@@ -4,6 +4,7 @@
     <string name="app_name">Sage 42 View Utils</string>
     <string name="title_activity_main">Sage 42 View Utils</string>
     <string name="menu_circular_progress_bar">Circular Progress Bar</string>
+    <string name="menu_segmented_progress_bar">Segmented Progress Bar</string>
     <string name="menu_custom_font_views">Custom Font View Elements</string>
     <string name="menu_marquee_text">Marquee/Scrolling TextView</string>
     <string name="title_sample_1">Counting down</string>
