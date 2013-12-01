@@ -78,11 +78,13 @@ public class FontManager
     private Font addFont(final Context context, final String fontName, final Integer normalResId,
                     final Integer italicResId)
     {
+        final String fontNameLower = fontName.toLowerCase(Locale.US);
+
         final Font font = new Font();
 
         // a list of font-family names supported.
         font.families = new ArrayList<String>();
-        font.families.add(fontName);
+        font.families.add(fontNameLower);
 
         // a list of files specifying the different styles.
         font.styles = new ArrayList<FontStyle>();
@@ -93,7 +95,7 @@ public class FontManager
             fontStyle.font = this.getFontFromRes(context, normalResId);
             fontStyle.style = Typeface.NORMAL;
             font.styles.add(fontStyle);
-            Log.d(FontManager.TAG, "Loaded (Normal): " + fontName); //$NON-NLS-1$
+            Log.d(FontManager.TAG, "Loaded (Normal): " + fontNameLower); //$NON-NLS-1$
         }
 
         if (italicResId != null)
@@ -102,7 +104,7 @@ public class FontManager
             fontStyle.font = this.getFontFromRes(context, italicResId);
             fontStyle.style = Typeface.ITALIC;
             font.styles.add(fontStyle);
-            Log.d(FontManager.TAG, "Loaded (Italic): " + fontName); //$NON-NLS-1$
+            Log.d(FontManager.TAG, "Loaded (Italic): " + fontNameLower); //$NON-NLS-1$
         }
 
         return font;
@@ -142,49 +144,51 @@ public class FontManager
 
     private void loadFont(final Context context, final String fontFamily)
     {
-        if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_THIN))
+        final String fontFamilyLower = fontFamily.toLowerCase(Locale.US);
+
+        if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_THIN))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_THIN, R.raw.roboto_thin,
-                            R.raw.roboto_thin_italic));
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_THIN,
+                            R.raw.roboto_thin, R.raw.roboto_thin_italic));
         }
-        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_LIGHT))
+        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_LIGHT))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_LIGHT, R.raw.roboto_light,
-                            R.raw.roboto_light_italic));
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_LIGHT,
+                            R.raw.roboto_light, R.raw.roboto_light_italic));
         }
-        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_REGULAR))
+        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_REGULAR))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_REGULAR,
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_REGULAR,
                             R.raw.roboto_regular, R.raw.roboto_regular_italic));
         }
-        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_MEDIUM))
+        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_MEDIUM))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_MEDIUM, R.raw.roboto_medium,
-                            R.raw.roboto_medium_italic));
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_MEDIUM,
+                            R.raw.roboto_medium, R.raw.roboto_medium_italic));
         }
-        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD))
+        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_BOLD))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD, R.raw.roboto_bold,
-                            R.raw.roboto_bold_italic));
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD,
+                            R.raw.roboto_bold, R.raw.roboto_bold_italic));
         }
-        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BLACK))
+        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_BLACK))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BLACK, R.raw.roboto_black,
-                            R.raw.roboto_black_italic));
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BLACK,
+                            R.raw.roboto_black, R.raw.roboto_black_italic));
         }
-        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_CONDENSED))
+        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_CONDENSED))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_CONDENSED,
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_CONDENSED,
                             R.raw.roboto_condensed, R.raw.roboto_condensed_italic));
         }
-        else if (fontFamily.equals(FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED))
+        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED))
         {
-            this.mFonts.put(fontFamily, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED,
+            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED,
                             R.raw.roboto_bold_condensed, R.raw.roboto_bold_condensed_italic));
         }
         else
         {
-            Log.e(FontManager.TAG, "Failed to load font, unknown fontFamily: " + fontFamily); //$NON-NLS-1$
+            Log.e(FontManager.TAG, "Failed to load font, unknown fontFamily: " + fontFamilyLower); //$NON-NLS-1$
         }
     }
 
@@ -258,13 +262,15 @@ public class FontManager
     public void addCustomFont(final Context context, final String fontFamily, final Integer normalFontRes,
                     final Integer italicFontRes)
     {
-        if (this.mFonts.containsKey(fontFamily))
+        final String fontFamilyLower = fontFamily.toLowerCase(Locale.US);
+
+        if (this.mFonts.containsKey(fontFamilyLower))
         {
             // not need to load it again
             return;
         }
 
-        this.mFonts.put(fontFamily, this.addFont(context, fontFamily, normalFontRes, italicFontRes));
+        this.mFonts.put(fontFamilyLower, this.addFont(context, fontFamilyLower, normalFontRes, italicFontRes));
     }
 
     public static Typeface extractTypeface(final Context context, final AttributeSet attrs)

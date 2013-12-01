@@ -7,7 +7,7 @@ import com.sage42.android.view_samples.R;
 
 public class MyFontManager extends FontManager
 {
-    private MyFontManager()
+    protected MyFontManager()
     {
         super();
     }
