@@ -19,12 +19,12 @@ buildscript
 
 configure(allprojects) {
     ext.androidVersion           	= "4.1.1.4"
-    ext.androidSDKVersion        	= "18"
+    ext.androidSDKVersion        	= "19"
     ext.androidBuildToolsVersion 	= "18.1.1"
     ext.androidSupportVersion    	= "18.0.1"
-    ext.androidCompileSdkVersion 	= 18
+    ext.androidCompileSdkVersion 	= 19
 	ext.androidMinSdkVersion 		= 8
-	ext.androidTargetSdkVersion		= 18
+	ext.androidTargetSdkVersion		= 19
 }
 
 configure(subprojects) { subproject ->
