@@ -20,7 +20,7 @@ buildscript
 configure(allprojects) {
     ext.androidVersion           	= "4.1.1.4"
     ext.androidSDKVersion        	= "19"
-    ext.androidBuildToolsVersion 	= "18.1.1"
+    ext.androidBuildToolsVersion 	= "19"
     ext.androidSupportVersion    	= "18.0.1"
     ext.androidCompileSdkVersion 	= 19
 	ext.androidMinSdkVersion 		= 8
