@@ -9,22 +9,14 @@ import android.util.TypedValue;
 import android.widget.RelativeLayout;
 
 /**
- * Copyright (C) 2013- Sage 42 App Sdn Bhd
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (C) 2013- Sage 42 App Sdn Bhd Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  * 
  * @author Corey Scott (corey.scott@sage42.com)
- *
  */
 public class ClickToOpenCloseLayout extends RelativeLayout
 {
@@ -111,13 +103,7 @@ public class ClickToOpenCloseLayout extends RelativeLayout
             }, INITIAL_ANIMATION_DELAY);
 
             // initialize animations
-            // must be done here so that we have the open dimension
-            // setup the open and close animations
-            this.mCloseAnimation = new AnimateOpenAndClosed(this, this.mHeightOpen, this.mHeightClosed, false);
-            this.mCloseAnimation.setDuration(this.mAnimationDuration);
-
-            this.mOpenAnimation = new AnimateOpenAndClosed(this, this.mHeightOpen, this.mHeightClosed, true);
-            this.mOpenAnimation.setDuration(this.mAnimationDuration);
+            this.initAnimations();
         }
     }
 
@@ -147,4 +133,31 @@ public class ClickToOpenCloseLayout extends RelativeLayout
             this.startAnimation(this.mOpenAnimation);
         }
     }
+
+    /**
+     * Set the animation duration. This should normally be done in the XML as setting it here will cause the animations
+     * to be re-defined.
+     * 
+     * @param animationDuration
+     *            the animationDuration to set
+     */
+    public void setAnimationDuration(final long animationDuration)
+    {
+        this.mAnimationDuration = animationDuration;
+
+        // re-init the animations
+        this.initAnimations();
+    }
+
+    private void initAnimations()
+    {
+        // must be done here so that we have the open dimension
+        // setup the open and close animations
+        this.mCloseAnimation = new AnimateOpenAndClosed(this, this.mHeightOpen, this.mHeightClosed, false);
+        this.mCloseAnimation.setDuration(this.mAnimationDuration);
+
+        this.mOpenAnimation = new AnimateOpenAndClosed(this, this.mHeightOpen, this.mHeightClosed, true);
+        this.mOpenAnimation.setDuration(this.mAnimationDuration);
+    }
+
 }
