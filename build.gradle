@@ -13,18 +13,16 @@ buildscript
 
     dependencies
     {
-        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.android.tools.build:gradle:0.7.+'
     }
 }
 
 configure(allprojects) {
-    ext.androidVersion           	= "4.1.1.4"
-    ext.androidSDKVersion        	= "19"
-    ext.androidBuildToolsVersion 	= "19"
-    ext.androidSupportVersion    	= "18.0.1"
     ext.androidCompileSdkVersion 	= 19
-	ext.androidMinSdkVersion 		= 8
-	ext.androidTargetSdkVersion		= 19
+    ext.androidMinSdkVersion 		= 8
+    ext.androidTargetSdkVersion		= 19
+    ext.androidBuildToolsVersion 	= "19.0.1"
+    ext.androidSupportVersion    	= "19.0.1"
 }
 
 configure(subprojects) { subproject ->
