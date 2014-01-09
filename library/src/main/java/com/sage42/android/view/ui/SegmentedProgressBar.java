@@ -31,8 +31,8 @@ import com.sage42.android.view.R;
  *
  */
 /**
- * Draw a ProgressBar but instead of being solid make it "segmented".
- * This class also supports adding a "gradient" to the colors.
+ * Draw a ProgressBar but instead of being solid make it "segmented". This class also supports adding a "gradient" to
+ * the colors.
  */
 public class SegmentedProgressBar extends ProgressBar
 {
@@ -149,9 +149,9 @@ public class SegmentedProgressBar extends ProgressBar
         final int top = this.getTop();
 
         // calculate the size of a "segment"
-        // NOTE: there is no "invisible segment drawn after the  last, hence the -1
+        // NOTE: there is no "invisible segment drawn after the last, hence the -1
         final int totalSegments = (this.mSegmentCount * 2) - 1;
-        final double segmentWidth = Math.floor(totalWidth / totalSegments);
+        final double segmentWidth = totalWidth / (double) totalSegments;
 
         // calculate how much of the bar to fill
         final double progressPercentage = this.getProgress() / (double) this.getMax();
@@ -160,7 +160,7 @@ public class SegmentedProgressBar extends ProgressBar
         for (int currentSegment = 0; currentSegment < this.mSegmentCount; currentSegment++)
         {
             // calculate lateral position
-            final double left = (currentSegment * segmentWidth * 2);
+            final double left = currentSegment * segmentWidth * 2;
 
             // get color for this segment
             final double position = currentSegment / (double) this.mSegmentCount;
@@ -174,7 +174,9 @@ public class SegmentedProgressBar extends ProgressBar
             }
 
             // draw segment
-            canvas.drawRect((int) left, top, (int) (left + segmentWidth), (top + segmentHeight), this.mPaintSegment);
+            canvas.drawRect(Double.valueOf(left).floatValue(), Double.valueOf(top).floatValue(),
+                            Double.valueOf(left + segmentWidth).floatValue(), Double.valueOf(top + segmentHeight)
+                                            .floatValue(), this.mPaintSegment);
         }
     }
 
