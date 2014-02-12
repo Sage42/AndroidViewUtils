@@ -37,20 +37,10 @@ import com.sage42.android.view.R;
  * 
  * @author Corey Scott (corey.scott@sage42.com)
  *
- * Reference: http://sriramramani.wordpress.com/2012/11/29/custom-fonts/
  */
 public class FontManager
 {
-    public static final String      FONT_NAME_ROBOTO_THIN           = "roboto-thin";                    //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_LIGHT          = "roboto-light";                   //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_REGULAR        = "roboto-regular";                 //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_MEDIUM         = "roboto-medium";                  //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_BOLD           = "roboto-bold";                    //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_BLACK          = "roboto-black";                   //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_CONDENSED      = "roboto-condensed";               //$NON-NLS-1$
-    public static final String      FONT_NAME_ROBOTO_BOLD_CONDENSED = "roboto-bold-condensed";          //$NON-NLS-1$
-
-    private static final String     TAG                             = FontManager.class.getSimpleName();
+    private static final String     TAG = FontManager.class.getSimpleName();
 
     private final Map<String, Font> mFonts;
 
@@ -146,56 +136,22 @@ public class FontManager
     {
         final String fontFamilyLower = fontFamily.toLowerCase(Locale.US);
 
-        if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_THIN))
+        RobotoTypes type = RobotoTypes.getByFamilyName(fontFamily);
+        if (type == null)
         {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_THIN,
-                            R.raw.roboto_thin, R.raw.roboto_thin_italic));
-        }
-        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_LIGHT))
-        {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_LIGHT,
-                            R.raw.roboto_light, R.raw.roboto_light_italic));
-        }
-        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_REGULAR))
-        {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_REGULAR,
-                            R.raw.roboto_regular, R.raw.roboto_regular_italic));
-        }
-        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_MEDIUM))
-        {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_MEDIUM,
-                            R.raw.roboto_medium, R.raw.roboto_medium_italic));
-        }
-        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_BOLD))
-        {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD,
-                            R.raw.roboto_bold, R.raw.roboto_bold_italic));
-        }
-        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_BLACK))
-        {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BLACK,
-                            R.raw.roboto_black, R.raw.roboto_black_italic));
-        }
-        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_CONDENSED))
-        {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_CONDENSED,
-                            R.raw.roboto_condensed, R.raw.roboto_condensed_italic));
-        }
-        else if (fontFamilyLower.equals(FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED))
-        {
-            this.mFonts.put(fontFamilyLower, this.addFont(context, FontManager.FONT_NAME_ROBOTO_BOLD_CONDENSED,
-                            R.raw.roboto_bold_condensed, R.raw.roboto_bold_condensed_italic));
+            Log.e(FontManager.TAG, "Failed to load font, unknown fontFamily: " + fontFamilyLower); //$NON-NLS-1$
         }
         else
         {
-            Log.e(FontManager.TAG, "Failed to load font, unknown fontFamily: " + fontFamilyLower); //$NON-NLS-1$
+            this.mFonts.put(fontFamilyLower,
+                            this.addFont(context, type.getFontName(), type.getNormalResId(), type.getItalicResId()));
         }
     }
 
     /**
      * Extend this class and override this method for custom error handling.
      * 
-     * @param exception 
+     * @param exception
      */
     public void logError(final Exception exception)
     {
@@ -275,7 +231,7 @@ public class FontManager
 
     public static Typeface extractTypeface(final Context context, final AttributeSet attrs)
     {
-        // Fonts work as a combination of particular family and the style. 
+        // Fonts work as a combination of particular family and the style.
         final TypedArray args = context.obtainStyledAttributes(attrs, R.styleable.fonts);
         final String family = args.getString(R.styleable.fonts_fontFamily);
         final int style = args.getInt(R.styleable.fonts_android_textStyle, -1);

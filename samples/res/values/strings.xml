@@ -27,6 +27,8 @@
     <string name="custom_font_roboto_black_italic">Roboto Black Italic</string>
     <string name="custom_font_roboto_condensed">Roboto Condensed</string>
     <string name="custom_font_roboto_condensed_italic">Roboto Condensed Italic</string>
+    <string name="custom_font_roboto_condensed_light">Roboto Condensed Light</string>
+    <string name="custom_font_roboto_condensed_light_italic">Roboto Condensed Light Italic</string>
     <string name="custom_font_roboto_bold_condensed">Roboto Bold Condensed</string>
     <string name="custom_font_roboto_bold_condensed_italic">Roboto Bold Condensed Italic</string>
     <string name="custom_font_baroque_script">Baroque Script from www.1001freefonts.com</string>
