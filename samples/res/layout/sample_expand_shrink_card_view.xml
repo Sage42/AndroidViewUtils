@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sage42.android.view_samples.ui.SampleExpandAndShrinkCard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sage42="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.sage42.android.view.animations.ClickToOpenCloseLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        sage42:animationDuration="500"
+        sage42:closedHeight="68"
+        sage42:maxCardHeight="200"
+        sage42:initialAnimationDuration="300" >
+
+        <LinearLayout
+            android:id="@+id/card_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:padding="8dp" >
+
+            <TextView
+                android:id="@+id/card_title"
+                style="@android:style/TextAppearance.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/card_text"
+                style="@android:style/TextAppearance.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </com.sage42.android.view.animations.ClickToOpenCloseLayout>
+
+</com.sage42.android.view_samples.ui.SampleExpandAndShrinkCard>
