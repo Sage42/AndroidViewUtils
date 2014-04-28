@@ -28,22 +28,56 @@ public class MyGestureDetector extends SimpleOnGestureListener
     {
         try
         {
-            if (Math.abs(event1.getY() - event2.getY()) > MyGestureDetector.SWIPE_MAX_OFF_PATH)
+            final boolean isXDirectionOffpath = Math.abs(event1.getX() - event2.getX()) > MyGestureDetector.SWIPE_MAX_OFF_PATH;
+            final boolean isYDirectionOffpath = Math.abs(event1.getY() - event2.getY()) > MyGestureDetector.SWIPE_MAX_OFF_PATH;
+
+            final boolean isXDirectionMinDistance = Math.abs(event1.getX() - event2.getX()) > MyGestureDetector.SWIPE_MIN_DISTANCE;
+            final boolean isYDirectionMinDistance = Math.abs(event1.getY() - event2.getY()) > MyGestureDetector.SWIPE_MIN_DISTANCE;
+
+            final boolean isXVelocityExceedThreshold = Math.abs(velocityX) > MyGestureDetector.SWIPE_THRESHOLD_VELOCITY;
+            final boolean isYVelocityExceedThreshold = Math.abs(velocityY) > MyGestureDetector.SWIPE_THRESHOLD_VELOCITY;
+
+            final boolean swipeInXDirection = false;
+            final boolean swipeInYDirection = false;
+
+            SwipeDirection swipeDirection = null;
+
+            // Check whether we have a swipe in the X direction
+            if (isXDirectionMinDistance && isXVelocityExceedThreshold && !isYDirectionOffpath)
             {
-                return false;
+                if (event1.getX() > event2.getX())
+                {
+                    // right to left swipe
+                    swipeDirection = SwipeDirection.LEFT;
+                }
+                else if (event2.getX() > event1.getX())
+                {
+                    // left to right swipe
+                    swipeDirection = SwipeDirection.RIGHT;
+                }
             }
-            if (((event1.getX() - event2.getX()) > MyGestureDetector.SWIPE_MIN_DISTANCE)
-                            && (Math.abs(velocityX) > MyGestureDetector.SWIPE_THRESHOLD_VELOCITY))
+
+            // Check whether we have a swipe in the Y direction
+            if (isYDirectionMinDistance && isYVelocityExceedThreshold && !isXDirectionOffpath)
             {
-                // right to left swipe
-                this.mCallback.onSwipe(SwipeDirection.LEFT);
+                if (event1.getY() > event2.getY())
+                {
+                    // right to left swipe
+                    swipeDirection = SwipeDirection.UP;
+                }
+                else if (event2.getY() > event1.getY())
+                {
+                    // left to right swipe
+                    swipeDirection = SwipeDirection.DOWN;
+                }
             }
-            else if (((event2.getX() - event1.getX()) > MyGestureDetector.SWIPE_MIN_DISTANCE)
-                            && (Math.abs(velocityX) > MyGestureDetector.SWIPE_THRESHOLD_VELOCITY))
+
+            if (swipeDirection != null)
             {
-                // left to right swipe
-                this.mCallback.onSwipe(SwipeDirection.RIGHT);
+                this.mCallback.onSwipe(swipeDirection);
             }
+
+            return (swipeDirection == null) ? false : true;
         }
         catch (final RuntimeException exception)
         {
@@ -52,6 +86,7 @@ public class MyGestureDetector extends SimpleOnGestureListener
                 Log.e(MyGestureDetector.TAG, exception.getMessage(), exception);
             }
         }
+
         return false;
     }
 
@@ -76,7 +111,7 @@ public class MyGestureDetector extends SimpleOnGestureListener
 
     public enum SwipeDirection
     {
-        LEFT, RIGHT;
+        LEFT, RIGHT, UP, DOWN;
     }
 
 }
