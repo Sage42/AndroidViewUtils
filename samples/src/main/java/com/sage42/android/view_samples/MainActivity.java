@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.sage42.android.view_samples.custom_fonts.CustomFontsActivity;
 import com.sage42.android.view_samples.marquee.MarqueeTextActivity;
 import com.sage42.android.view_samples.ui.CircularProgressBarActivity;
+import com.sage42.android.view_samples.ui.ExpandShrinkListViewActivity;
 import com.sage42.android.view_samples.ui.SegmentedProgressBarActivity;
 
 /**
@@ -37,6 +38,7 @@ public class MainActivity extends ListActivity
     private static final int MENU_SEGMENTED_PROGRESS_BAR = 1;
     private static final int MENU_CUSTOM_FONT_VIEWS      = 2;
     private static final int MENU_MARQUEE_TEXT           = 3;
+    private static final int MENU_EXPAND_AND_SHRINK_LIST = 4;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState)
@@ -46,7 +48,8 @@ public class MainActivity extends ListActivity
         // populate the "menu" list
         final String[] values = new String[]
         { this.getString(R.string.menu_circular_progress_bar), this.getString(R.string.menu_segmented_progress_bar),
-                        this.getString(R.string.menu_custom_font_views), this.getString(R.string.menu_marquee_text) };
+                        this.getString(R.string.menu_custom_font_views), this.getString(R.string.menu_marquee_text),
+                        this.getString(R.string.menu_expand_shrink_list) };
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
         this.setListAdapter(adapter);
     }
@@ -70,6 +73,10 @@ public class MainActivity extends ListActivity
 
             case MENU_MARQUEE_TEXT:
                 this.startActivity(new Intent(this, MarqueeTextActivity.class));
+                return;
+
+            case MENU_EXPAND_AND_SHRINK_LIST:
+                this.startActivity(new Intent(this, ExpandShrinkListViewActivity.class));
                 return;
 
             default:

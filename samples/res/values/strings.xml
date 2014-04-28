@@ -7,6 +7,7 @@
     <string name="menu_segmented_progress_bar">Segmented Progress Bar</string>
     <string name="menu_custom_font_views">Custom Font View Elements</string>
     <string name="menu_marquee_text">Marquee/Scrolling TextView</string>
+    <string name="menu_expand_shrink_list">Expand/Shrink ListView</string>
     <string name="title_sample_1">Counting down</string>
     <string name="title_sample_2">Counting up</string>
     <string name="title_sample_3">Counting up/down without text</string>
@@ -34,4 +35,51 @@
     <string name="custom_font_baroque_script">Baroque Script from www.1001freefonts.com</string>
     <string name="custom_font_katy_berry">Katy Berry from www.1001freefonts.com</string>
     <string name="marquee_long_long_text">The quick brown fox jumped over the lazy dog.</string>
+
+    <string-array name="expand_shrink_list_view_title">
+        <item>Waalwijk</item>
+        <item>Lambersart</item>
+        <item>Duque de Caxias</item>
+        <item>Fallais</item>
+        <item>Stewart</item>
+        <item>Denderbelle</item>
+        <item>Khanpur</item>
+        <item>Golspie</item>
+        <item>Portsmouth</item>
+        <item>San Massimo</item>
+        <item>Saint-Pierre</item>
+        <item>Ceppaloni</item>
+        <item>Okotoks</item>
+        <item>Hafizabad</item>
+        <item>Husum</item>
+        <item>Cranbrook</item>
+        <item>Piringen</item>
+        <item>Bear</item>
+        <item>Maple Creek</item>
+        <item>Falciano del Massico</item>
+    </string-array>
+    
+    <string-array name="expand_shrink_list_view_text">
+        <item>in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla.</item>
+        <item>purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa</item>
+        <item>malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo</item>
+        <item>interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac</item>
+        <item>congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam.</item>
+        <item>lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie</item>
+        <item>Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius</item>
+        <item>libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus</item>
+        <item>iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis</item>
+        <item>ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus.</item>
+        <item>massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci,</item>
+        <item>semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus</item>
+        <item>consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin</item>
+        <item>Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper.</item>
+        <item>justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer</item>
+        <item>enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu,</item>
+        <item>Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit,</item>
+        <item>nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus.</item>
+        <item>ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo,</item>
+        <item>fermentum metus. Aenean sed pede nec ante blandit viverra. Donec</item>
+    </string-array>
+
 </resources>

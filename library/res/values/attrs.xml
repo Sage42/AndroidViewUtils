@@ -47,6 +47,7 @@
         <attr name="initialAnimationDuration" format="integer" />
         <attr name="animationDuration" format="integer" />
         <attr name="closedHeight" format="integer" />
+        <attr name="maxCardHeight" format="integer" />
     </declare-styleable>
 
 </resources>

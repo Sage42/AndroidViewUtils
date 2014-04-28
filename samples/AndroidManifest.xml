@@ -34,6 +34,9 @@
             android:name="com.sage42.android.view_samples.ui.SegmentedProgressBarActivity"
             android:label="@string/menu_segmented_progress_bar" />
         <activity
+            android:name="com.sage42.android.view_samples.ui.ExpandShrinkListViewActivity"
+            android:label="@string/menu_expand_shrink_list" />
+        <activity
             android:name="com.sage42.android.view_samples.custom_fonts.CustomFontsActivity"
             android:label="@string/menu_custom_font_views" />
         <activity
