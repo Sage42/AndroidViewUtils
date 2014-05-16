@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.sage42.android.view.animations.ClickToOpenCloseLayout;
 import com.sage42.android.view.animations.ClickToOpenCloseLayout.IClickToOpenCloseLayoutListener;
 
-public abstract class ExpandAndShrinkCardsListViewAdapter<E extends ExpandAndShrinkCardView> extends CursorAdapter
-                implements IClickToOpenCloseLayoutListener
+public abstract class ExpandAndShrinkCardsListViewAdapter extends CursorAdapter implements
+                IClickToOpenCloseLayoutListener
 {
     private final HashMap<Long, ExpandAndShrinkLayoutStates> mListItemsState;
 
@@ -30,16 +30,19 @@ public abstract class ExpandAndShrinkCardsListViewAdapter<E extends ExpandAndShr
     @Override
     public final void bindView(final View view, final Context context, final Cursor cursor)
     {
-        if (view instanceof ExpandAndShrinkCardView)
+        // Bind data first
+        this.bindExpandAndShrinkView(view, context, cursor);
+        
+        //get the customview
+        View customView = this.setExpandAndSrinkView(view);
+        if (customView instanceof ExpandAndShrinkCardView)
         {
-            final ExpandAndShrinkCardView expandAndShrinkView = (ExpandAndShrinkCardView) view;
+            final ExpandAndShrinkCardView expandAndShrinkView = (ExpandAndShrinkCardView) customView;
             // Prepare view for reuse
             final ClickToOpenCloseLayout parentContainer = expandAndShrinkView.getParentContainer();
             if (parentContainer != null)
-            {
-                // Bind data first
-                this.bindExpandAndShrinkView(expandAndShrinkView, context, cursor);
-
+            {               
+                //expandAndShrinkView.setParentContainer(parentContainer);
                 // Recalculate view properties
                 parentContainer.setListener(this);
                 parentContainer.onLayoutReuse(cursor.getPosition());
@@ -56,18 +59,27 @@ public abstract class ExpandAndShrinkCardsListViewAdapter<E extends ExpandAndShr
     public final View newView(final Context context, final Cursor cursor, final ViewGroup parent)
     {
         // Get a new View from implementing class
-        final ExpandAndShrinkCardView newView = this.newExpandAndShrinkView(context, cursor, parent);
-
+        final View newView = this.newExpandAndShrinkView(context, cursor, parent);
+        
+        //Get click to open close layout from the view
+        final ClickToOpenCloseLayout clickToOpenCloseLayout = this.setClickToOpenCloseLayout(newView);
+        
+        //Get ExpandAndShrinkCardView layout from the view
+        final ExpandAndShrinkCardView customView = this.setExpandAndSrinkView(newView);
+        
+        //Set parent layout
+        customView.setParentContainer(clickToOpenCloseLayout);
+        
         // Get unique id
         final long uniqueId = cursor.getPosition();
 
         // Save the current view state in memory
         this.mListItemsState.put(uniqueId, ExpandAndShrinkLayoutStates.INITIAL);
-        newView.setUuid(uniqueId);
-        final ClickToOpenCloseLayout parentContainer = newView.getParentContainer();
+        customView.setUuid(uniqueId);
+        final ClickToOpenCloseLayout parentContainer = customView.getParentContainer();
         if (parentContainer != null)
         {
-            newView.setUuid(uniqueId);
+            customView.setUuid(uniqueId);
             parentContainer.setListener(this);
         }
 
@@ -103,9 +115,13 @@ public abstract class ExpandAndShrinkCardsListViewAdapter<E extends ExpandAndShr
         return currentState;
     }
 
-    public abstract E newExpandAndShrinkView(final Context context, final Cursor cursor, final ViewGroup parent);
+    public abstract View newExpandAndShrinkView(final Context context, final Cursor cursor, final ViewGroup parent);
 
-    public abstract void bindExpandAndShrinkView(final ExpandAndShrinkCardView view, final Context context,
+    public abstract ExpandAndShrinkCardView setExpandAndSrinkView(View v);
+    
+    public abstract ClickToOpenCloseLayout setClickToOpenCloseLayout(View v);
+    
+    public abstract void bindExpandAndShrinkView(final View view, final Context context,
                     final Cursor cursor);
 
 }
